@@ -4,6 +4,9 @@ var filesToCache = [
   '/MobileApp/index.html',
   '/MobileApp/login.html',
   '/MobileApp/css/style.css',
+  '/MobileApp/css/login.css',
+  '/MobileApp/css/pages.css',
+  '/MobileApp/css/prenotazioni.css',
   '/MobileApp/js/main.js',
   '/MobileApp/js/login.js'
 ];
