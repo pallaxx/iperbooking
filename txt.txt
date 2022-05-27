@@ -1,0 +1,6 @@
+- fare la schermata index con BOH
+- controllare nella pagin auser.js perchè vanno tutti undefined
+- fare poi la pagina delle prenotazionfa
+- controllare bene le email che arrivano per visualizzarle penso in una pagina (?)
+
+https://backoffice.iperbooking.cristiano/?event=crm.main#/

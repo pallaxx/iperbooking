@@ -1,0 +1,157 @@
+/* OGNI PAGINA */
+.fullscreen .page{
+    height: 89vh;
+    overflow-y: scroll;
+}
+
+/* PRENOTAZIONI */
+/* HEADER */
+.fullscreen .page#prenotazioni .container-fluid .input-group{
+    border: 2px solid #000;
+    border-radius: 8px;
+    transition:all 0.3s ease;
+}
+.fullscreen .page#prenotazioni .container-fluid .input-group:focus-within{
+    border: 2px solid var(--primary);
+    padding: 4px 8px;
+}
+.fullscreen .page#prenotazioni .container-fluid .input-group .input-search{
+    border: 0;
+}
+.fullscreen .page#prenotazioni .container-fluid .input-group .input-group-text{
+    border: 0;
+}
+
+/* ELENCO */
+.fullscreen .page#prenotazioni .container-fluid#elenco{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    padding: 0;
+}
+/* IMPOSTAZIONI DI OGNI PRENOTAZIONE */
+.fullscreen .page#prenotazioni #elenco .prenotazione{
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    height: 15vh;
+    border-top: 1px solid #000;
+}
+.fullscreen .page#prenotazioni #elenco .prenotazione:nth-last-child(2){
+    border-bottom: 1px solid #000;
+}
+/* DATA PRENOTAZIONE */
+.fullscreen .page#prenotazioni #elenco .prenotazione .dataprenotazione{
+    position: absolute;
+    top: 1vh;
+    left: 1em;
+    font-size: 11px;
+}
+/* CLIENTE */
+.fullscreen .page#prenotazioni #elenco .prenotazione .cliente{
+    position: absolute;
+    top: 4vh;
+    left: .5em;
+    width: 200px;
+    height: 7vh;
+    font-size: 16px;
+}
+/* CANALE */
+.fullscreen .page#prenotazioni #elenco .prenotazione .canale{
+    position: absolute;
+    top: 10vh;
+    left: 4em;
+    font-size: 16px;
+}
+
+/* STAGIONE E PERIODO */
+.fullscreen .page#prenotazioni #elenco .prenotazione .stagione_periodo{
+    position: absolute;
+    top: 1vh;
+    right: .5em;
+}
+/* STAGIONE */
+.fullscreen .page#prenotazioni #elenco .prenotazione .stagione_periodo .stagione-group{
+    position: relative;
+    font-size: 14px;
+}
+/* PERIODO */
+.fullscreen .page#prenotazioni #elenco .prenotazione .stagione_periodo .periodo-group {
+    position: relative;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* CAMERE E NOTTI */
+.fullscreen .page#prenotazioni #elenco .prenotazione .camere_notti{
+    position: absolute;
+    top: 8vh;
+    right: 1em;
+}
+/* CAMERE */
+.fullscreen .page#prenotazioni #elenco .prenotazione .camere_notti .camere-group{
+    position: relative;
+    margin-right: .25em;
+    display: inline-flex;
+}
+.fullscreen .page#prenotazioni #elenco .prenotazione .camere_notti .camere-group .icona{width: 25px;} 
+.fullscreen .page#prenotazioni #elenco .prenotazione .camere_notti .camere-group .testo{margin: 3px;font-size: 16px;}
+/* NOTTI */
+.fullscreen .page#prenotazioni #elenco .prenotazione .camere_notti .notti-group {
+    position: relative;
+    margin-left: .25em;
+    display: inline-flex;
+}
+.fullscreen .page#prenotazioni #elenco .prenotazione .camere_notti .notti-group .icona{width: 25px;} 
+.fullscreen .page#prenotazioni #elenco .prenotazione .camere_notti .notti-group .testo{margin: 3px;font-size: 16px;}
+
+/* INDICE */
+.fullscreen .page#prenotazioni #elenco .indice {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    display: inline-flex;
+}
+.fullscreen .page#prenotazioni #elenco .indice .arrow-left {
+    width: 20px;
+    margin-right: 1em;
+}
+.fullscreen .page#prenotazioni #elenco .indice .number {
+    font-size: 18px;
+}
+.fullscreen .page#prenotazioni #elenco .arrow-right {
+    width: 20px;
+    margin-left: 1em;
+}
+
+
+/* NAVBAR */
+.fullscreen nav ul li a svg{
+    width: 32px;
+    height: 40px;
+    margin-top: 15px;
+}
+.fullscreen nav ul li label{
+	font-size: 10px;
+}
+.fullscreen nav ul{
+	height: auto;
+}
+.fullscreen nav ul li a svg{
+    color: var(--black);
+    transition: 0s all ease;
+}
+.fullscreen nav ul li a svg.active{
+    color: var(--primary);
+}
+.fullscreen nav ul li a img{
+    border: 0;
+    transition: 0s all ease;
+}
+.fullscreen nav ul li a img.active{
+    border: 1px solid var(--primary);
+}
+.fullscreen #user .row #user_email{
+	text-align: center;
+	max-width: 250px;
+}

@@ -1,0 +1,31 @@
+var cacheName = 'iperbooking-pwa';
+var filesToCache = [
+  '/',
+  '/MobileApp/index.html',
+  '/MobileApp/login.html',
+  '/MobileApp/css/style.css',
+  '/MobileApp/css/login.css',
+  '/MobileApp/css/pages.css',
+  '/MobileApp/css/prenotazioni.css',
+  '/MobileApp/js/main.js',
+  '/MobileApp/js/login.js'
+];
+
+/* Start the service worker and cache all of the app's content */
+self.addEventListener('install', function(e) {
+  e.waitUntil(
+    caches.open(cacheName).then(function(cache) {
+      return cache.addAll(filesToCache);
+    })
+  );
+  self.skipWaiting();
+});
+
+// /* Serve cached content when offline */
+self.addEventListener('fetch', function(e) {
+  e.respondWith(
+    caches.match(e.request).then(function(response) {
+      return response || fetch(e.request);
+    })
+  );
+});
