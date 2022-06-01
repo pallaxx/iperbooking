@@ -1,6 +1,4 @@
-- fare la schermata index con BOH
-- controllare nella pagin auser.js perchè vanno tutti undefined
-- fare poi la pagina delle prenotazionfa
-- controllare bene le email che arrivano per visualizzarle penso in una pagina (?)
+-fitro
 
-https://backoffice.iperbooking.cristiano/?event=crm.main#/
+- nella pagina prenotazioni prendere fare chiamata ajax normale
+dell'eleno ma mostrare tutto in una pagina fatta male aspettando l'altra ajax

@@ -1,21 +1,8 @@
+document.getElementById("form").style.display = '';
 var requestcode;
 
-function setLogin() {
-  document.getElementById("txtEmail").style.display = "";
-  document.getElementById("pswPwd").style.display = "";
-  document.getElementById("txtCodice").style.display = "none";
-  document.getElementById("loginmsg").innerHTML = "";
-  document.getElementById("btnLogin").onclick= requestLogin;
-}
-function setAuthCode() {
-  document.getElementById("txtEmail").style.display = "none";
-  document.getElementById("pswPwd").style.display = "none";
-  document.getElementById("txtCodice").style.display = "";
-  document.getElementById("loginmsg").innerHTML = "";
-  document.getElementById("btnLogin").onclick= requestAuthCode;
-}
-
 function requestLogin() {
+  document.getElementById("btnform").innerHTML = '<img src="images/loading-page.gif" alt="">';
   var url = site+"ajax/proxy.cfm?action=utente.login";
   var email = encodeURIComponent(document.getElementById("txtEmail").value);
   var pwd = encodeURIComponent(document.getElementById("pswPwd").value);
@@ -38,7 +25,7 @@ function handleLoginResponse() {
         document.getElementById("pswPwd").style.display = "none";
         document.getElementById("txtCodice").style.display = "";
         document.getElementById("loginmsg").innerHTML = "";
-        document.getElementById("btnLogin").onclick = requestAuthCode;
+        document.getElementById("btnform").innerHTML = '<div class="btn" id="btnlogin" onclick="requestAuthCode()"><span>Login</span></div>';
         requestcode = json.confirmationRequestCode;
       }
       else
@@ -48,9 +35,9 @@ function handleLoginResponse() {
 }
 
 function requestAuthCode() {
+  document.getElementById("btnform").innerHTML = '<img src="images/loading-page.gif" alt="">';
   var url = site+"ajax/proxy.cfm?action=utente.confermaLogin";
   var code = document.getElementById("txtCodice").value;
-
   let xhrauthcode = new XMLHttpRequest();
     xhrauthcode.open("POST", url, true);
     xhrauthcode.withCredentials = true;
@@ -67,10 +54,18 @@ function handleCodeResponse() {
       findCrossCookies();
     }
     else
+    {
       document.getElementById("loginmsg").innerHTML = json.messaggio;
+      document.getElementById("btnform").innerHTML = '<div class="btn" id="btnlogin" onclick="requestAuthCode()"><span>Login</span></div>';
+    }
   } 
 }
 
 // email: alex.mazzoni17@gmail.com
 // pdw: Test123456
 // http://backoffice.iperbooking.cristiano/?event=codiceLogin&req=96994004A2CEEA7C7A05CFF427533324CFC417AB
+
+function hideForm()
+{
+  document.getElementById("form").style.display = 'none';
+}

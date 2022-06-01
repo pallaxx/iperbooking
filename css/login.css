@@ -29,14 +29,18 @@
 	border: 2px solid var(--secondary) !important;
 }
 
+.fullscreen .container#Login .row img{
+	width: 50px;
+}
 .fullscreen .container#Login .row .btn{
 	max-width: 400px;
 	border-radius: 4px;
-	font-size: 1.5em;
 	border: 1px solid var(--primary);
 	background-color: var(--primary);
 }
-.fullscreen .container#Login .row .btn:focus{
+.fullscreen .container#Login .row .btn:hover{
 	border: 2px solid var(--secondary);
-	background-color: var(--secondary);
+}
+.fullscreen .container#Login .row .btn span{
+	font-size: 1.5em;
 }

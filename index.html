@@ -28,6 +28,13 @@
         
     </head>
     <body class="fullscreen">
+        <!-- PAGINA DI CARICAMENTO -->
+        <div id="loading" class="page">
+            <img src="images/loading-page.gif" alt="">
+            <div class="progress">
+                <span id="loading_bar" class="value"></span>
+            </div>
+        </div>
 
         <!-- HOME -->
         <div id="home" class="page">
@@ -44,12 +51,17 @@
                 </div>
             </div>
             <div class="container">
-
+                <a onclick="viewLoading('2')">CARICA</a> <!-- come si usa -->
             </div>
         </div>
 
         <!-- USER -->
         <div id="user" class="page">
+            <div class="close" onclick="viewHome()">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </div>
             <div class="container-fluid" style="margin-top:50px;">
                 <div class="p-3 row flex-column justify-center">
                     <div class="profile_picture">
@@ -80,9 +92,9 @@
         <!-- INIZIO PAGINE -->
         <!-- PRENOTAZIONI -->
         <div id="prenotazioni" class="page">
-            <div class="container-fluid">
-                <div class="pt-3 pb-3 row flex-column justify-center">
-                    <div class="input-group mb-3">
+            <div class="container-fluid mt-3 mb-3">
+                <div class="row flex-column justify-center">
+                    <div class="input-group">
                         <input type="text" id="prenotazioni_search" class="input-search shadow-none form-control" placeholder="Cerca Prenotazioni" aria-label="Cerca Prenotazioni" aria-describedby="filter-addon">
                         <span onclick="showFilter()" class="input-group-text bg-transparent text-dark" id="filter-addon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-filter" viewbox="0 0 16 16">
@@ -93,6 +105,49 @@
                 </div>
             </div>
             <div class="container-fluid" id="elenco">
+                <div class="loading">
+                    <img src="images/loading-page.gif" alt="">
+                </div>
+            </div>
+        </div>
+        <div id="filter">
+            <div onclick="viewPrenotazioni()" class="vuoto">
+
+            </div>
+            <div class="container-fluid">
+                <span>
+                    FILTRA PER
+                </span>
+                <div class="canali field d-flex flex-column align-items-center justify-content-center">
+                    <select name="" id="filter_canali">
+                        <option value="TUTTI I CANALI">TUTTI I CANALI</option>
+                        <option value="iperbooking">iperbooking</option>
+                        <option value="crm">CRM</option>
+                        <option value="booking.com">booking.com</option>
+                        <option value="expedia">expedia</option>
+                        <option value="facebook">facebook</option>
+                        <option value="tripadvisor">tripadvisor</option>
+                        <option value="trivago">trivago</option>
+                    </select>
+                </div>
+
+                <div class="date field d-flex flex-column align-items-center justify-content-center">
+                    <div class="d-flex align-items-center justify-content-center">
+                        da
+                        <input type="date" name="" id="filter_arrivo">
+                        a
+                        <input type="date" name="" id="filter_partenza">
+                    </div>
+                </div>
+
+                <div class="filtradata field d-flex flex-column align-items-center justify-content-center">
+                    <select name="" id="filter_filtradata">
+                        <option value="effettuata">prenotazione effettuata</option>
+                        <option value="arrivo">arrivo</option>
+                        <option value="partenza">partenza</option>
+                        <option value="presenza">presenza</option>
+                    </select>
+                </div>
             </div>
         </div>
 
@@ -136,7 +191,7 @@
 
         <!-- NAVBAR -->
         <nav id="navbar" class="p-0 navbar fixed-bottom navbar-expand-sm navbar-dark bg-white">
-            <div class="border-dark border-2 border-top container-fluid justify-content-center">
+            <div class="container-fluid justify-content-center">
                 <ul class="navbar-nav flex-row" >
                     <li class="d-flex flex-column align-items-center justify-content-center m-1 rounded-circle text-dark nav-item" style="width: 60px; height:60px;">
                         <a onclick="viewPrenotazioni()" style="transform: rotate(-45deg);">
@@ -180,5 +235,6 @@
             </div>
         </nav>
         <script src="js/main.js" async defer></script>
+        <script src="js/pages.js" async defer></script>
     </body>
 </html>

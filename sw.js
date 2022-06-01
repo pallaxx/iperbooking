@@ -1,14 +1,14 @@
 var cacheName = 'iperbooking-pwa';
 var filesToCache = [
   '/',
-  '/MobileApp/index.html',
-  '/MobileApp/login.html',
-  '/MobileApp/css/style.css',
-  '/MobileApp/css/login.css',
-  '/MobileApp/css/pages.css',
-  '/MobileApp/css/prenotazioni.css',
-  '/MobileApp/js/main.js',
-  '/MobileApp/js/login.js'
+  '/index.html',
+  '/login.html',
+  '/css/style.css',
+  '/css/login.css',
+  '/css/pages.css',
+  '/css/prenotazioni.css',
+  '/js/main.js',
+  '/js/login.js'
 ];
 
 /* Start the service worker and cache all of the app's content */
