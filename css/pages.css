@@ -4,8 +4,23 @@
     overflow-y: scroll;
 }
 
+/* HOME */
+
+
+/* USER */
+.fullscreen .page#user .close {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 25px;
+}
+.fullscreen .page#user .close svg {
+    width: 50px;
+}
+
+
 /* PRENOTAZIONI */
-/* HEADER */
+/* SEARCH */
 .fullscreen .page#prenotazioni .container-fluid .input-group{
     border: 2px solid #000;
     border-radius: 8px;
@@ -22,6 +37,73 @@
     border: 0;
 }
 
+/* FILTER */
+.fullscreen #filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+.fullscreen #filter .vuoto {
+    height: 20vh;
+} .fullscreen #filter .container-fluid {
+    position: absolute;
+    height: 80vh;
+    z-index: 5001;
+    border-radius: 8px 8px 0px 0px;
+    border-top: 2px solid black;
+    background-color: #fff;
+}
+.fullscreen #filter .container-fluid span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 32px;
+    padding: 20px;
+}
+.fullscreen #filter .container-fluid .field {
+    margin-top: 0px;
+}
+
+/* CANALI */
+.fullscreen #filter .container-fluid .field.canali {
+    width: 100%;
+}
+.fullscreen #filter .container-fluid .field.canali select{
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    padding: 8px 64px;
+    border: 0;
+}
+
+/* DATE */
+.fullscreen #filter .container-fluid .field.date {
+    margin-top: 60px;
+    width: 100%;
+}
+.fullscreen #filter .container-fluid .field.date input{
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    border: 0;
+}
+
+/* CATEGORIE */
+.fullscreen #filter .container-fluid .field.filtradata {
+    margin-top: 60px;
+    width: 100%;
+}
+.fullscreen #filter .container-fluid .field.filtradata select{
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    padding: 8px ;
+    border: 0;
+}
+
 /* ELENCO */
 .fullscreen .page#prenotazioni .container-fluid#elenco{
     display: flex;
@@ -29,6 +111,12 @@
     align-items: center;
     max-width: 400px;
     padding: 0;
+}
+/* LOADING */
+.fullscreen .page#prenotazioni #elenco .loading{
+    justify-content: center;
+    align-items: center;
+    margin-top: 160px;
 }
 /* IMPOSTAZIONI DI OGNI PRENOTAZIONE */
 .fullscreen .page#prenotazioni #elenco .prenotazione{
@@ -75,6 +163,7 @@
 .fullscreen .page#prenotazioni #elenco .prenotazione .stagione_periodo .stagione-group{
     position: relative;
     font-size: 14px;
+    text-align: center;
 }
 /* PERIODO */
 .fullscreen .page#prenotazioni #elenco .prenotazione .stagione_periodo .periodo-group {
@@ -125,6 +214,10 @@
 }
 
 /* NAVBAR */
+.fullscreen nav{
+    opacity: 1;
+    z-index: 5000;
+}
 .fullscreen nav ul li a svg{
     width: 32px;
     height: 40px;
@@ -137,7 +230,7 @@
 	height: auto;
 }
 .fullscreen nav ul li a svg{
-    color: var(--black);
+    color: #000;
     transition: 0s all ease;
 }
 .fullscreen nav ul li a svg.active{

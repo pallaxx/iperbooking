@@ -6,10 +6,6 @@ body {
 }
 
 :root {
-    /** general **/
-    --white    : #fff;
-    --black    : #000;
-
     --primary  : #f245a7;
     --secondary: #dc248e;
     --selected : #0077FF;
@@ -17,13 +13,42 @@ body {
 * { box-sizing: border-box;transition: all 0.6s ease-in-out;}
 
 .fullscreen {
-    display: flex;
     height: 100vh;
     margin: 0;
     padding: 0;
     width: 100%;
-	flex-direction: column;
+    z-index: 1000;
 }
+
+.fullscreen #loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    z-index: 9999;
+}
+.fullscreen #loading .progress {
+    margin-top: 50px;
+    height: 12px;
+    border-radius: 4px;
+    background-color: rgba(43, 25, 25, 0);
+    width: 200px;
+}
+.fullscreen #loading .progress .value {
+    animation: loading infinite;
+    background-color: var(--primary);
+}
+
+@keyframes loading {
+    from {width: 0%;}
+    to {width: 101%;}
+  }
 
 .fullscreen .row {
 	text-align: center;
@@ -43,3 +68,10 @@ body {
 	width: 100%;
 }
 
+.light {
+
+}
+
+.dark {
+
+}

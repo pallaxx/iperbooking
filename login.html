@@ -28,35 +28,40 @@
         
     </head>
     <body class="fullscreen" >
-        <div class="header">
-            <div class="row justify-center">
-                <div class="logo col-8">
-                    <img src="https://backoffice.iperbooking.net/assets/main/img/logo.png" alt="">
+
+        <div id="form">
+            <div class="header">
+                <div class="row justify-center">
+                    <div class="logo col-8">
+                        <img src="https://backoffice.iperbooking.net/assets/main/img/logo.png" alt="">
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="container" id="Login">
-            <div class="row">
-                <span class="title">Login</span>
+    
+            <div class="container" id="Login">
+                <div class="row">
+                    <span class="title">Login</span>
+                </div>
+                <div class="row">
+                    <input type="text" class="form-control field shadow-none" value="alex.mazzoni17@gmail.com" placeholder="Email" id="txtEmail">
+                </div>
+                <div class="row">
+                    <input type="text" style="display: none;" class="form-control field shadow-none" value="" placeholder="Codice" id="txtCodice">
+                </div>
+                <div class="row">
+                    <input type="password" class="form-control field shadow-none" value="Test123456" placeholder="Password" id="pswPwd">
+                </div>
+                <div class="row">
+                    <span id="loginmsg" class="error">
+                    </span>
+                </div>
+                <div class="row" id="btnform">
+                    <div class="btn" id="btnlogin" onclick="requestLogin()">
+                        <span>Login</span>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <input type="text" class="form-control field shadow-none" value="alex.mazzoni17@gmail.com" placeholder="Email" id="txtEmail">
-            </div>
-            <div class="row">
-                <input type="text" style="display: none;" class="form-control field shadow-none" value="" placeholder="Codice" id="txtCodice">
-            </div>
-            <div class="row">
-                <input type="password" class="form-control field shadow-none" value="Test123456" placeholder="Password" id="pswPwd">
-            </div>
-            <div class="row">
-                <span id="loginmsg" class="error">
-
-                </span>
-            </div>
-            <div class="row">
-                <input class="btn btn-primary mb-3 shadow-none" type="button" id="btnLogin" onclick="requestLogin()" value="Login"/>
-            </div>
+    
         </div>
 
         <script>
