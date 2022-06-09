@@ -75,7 +75,7 @@ function Logout() {
 // ------ prenotazione page --------------------------------------------------------------------------------------------------------------
 //AJAX per le prenotazioni
 
-function ElencoPrenotazioni() {
+function elencoPrenotazioni() {
     //suddivisione di ogni filtro
     let codice = document.getElementById("prenotazioni_search").value; //filtra per codice o nome (un po di tutto)
     let canale = document.getElementById('filter_canali').value; // se 0 prende tutto (esempio di canali. (Agoda, Adriatico, CRM, Booking.com))
@@ -99,7 +99,7 @@ function ElencoPrenotazioni() {
     var row="";
     for (let index = 0; index < json.count; index++) {
       if(json.data[index].eliminata)          //CLICCANDO IN QUELLA PRENOTAZIONE RICHIEDE TRAMITE L'ID LA PRNOTAZIONE E STAMPA UNA PAGINA
-        row += '<div class="prenotazione eliminata" onclick="RedirectPrenotazione('+json.data[index].id+')">';
+        row += '<div class="prenotazione eliminata" onclick="redirectPrenotazione('+json.data[index].id+')">';
       else
         row += '<div class="prenotazione" onclick="RedirectPrenotazione('+json.data[index].id+')">';
        
@@ -146,18 +146,18 @@ function ElencoPrenotazioni() {
     document.getElementById("elenco").innerHTML = row;
   }
 }
-function RedirectPrenotazione(codice) {
+function redirectPrenotazione(codice) {
   location.href="prenotazioni.html?Id="+codice;
 }
 function nextPage() {
   pagenumber++;
   document.getElementById("elenco").innerHTML = '<div class="loading"><img src="images/loading-page.gif" alt=""></div>';
-  ElencoPrenotazioni();
+  elencoPrenotazioni();
 }
 function previousPage() {
   pagenumber--;
   document.getElementById("elenco").innerHTML = '<div class="loading"><img src="images/loading-page.gif" alt=""></div>';
-  ElencoPrenotazioni();
+  elencoPrenotazioni();
 }
 
 //20220525 anno mese giorno
@@ -169,7 +169,7 @@ function stampaGiorno(stringadata) {return arraygiorni[parseInt(stringadata.slic
 
 // ------ settings page --------------------------------------------------------------------------------------------------------------
 //AJAX per l'elenco di strutture dell'utente
-function ElencoStrutture() {
+function elencoStrutture() {
   var url = site+"/ajax/proxy.cfm?action=utente.listHotel&IdUtente="+id+"&skip=0&page=1";
   let xhrelencos = new XMLHttpRequest();
   xhrelencos.withCredentials = true;
@@ -207,7 +207,7 @@ function viewPrenotazioni() { //pagina tutta a sinistra (la chiave)
   document.getElementById("navbar_prenotazioni").classList.add("active");
   document.getElementById("prenotazioni").style.display = '';
   document.getElementById("filter").style.display = 'none';
-  ElencoPrenotazioni();
+  elencoPrenotazioni();
 }
 function showFilter() {
   document.getElementById("filter").style.display = '';

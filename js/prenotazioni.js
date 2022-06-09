@@ -7,7 +7,7 @@ window.onload = () => {
     id = attribute[1];
 }
 
-function Prenotazione(params) {
+function prenotazione() {
     var url = site+""; //CHIEDERE AJAX
     let xhrprenotazione = new XMLHttpRequest();
     xhrprenotazione.withCredentials = true;
