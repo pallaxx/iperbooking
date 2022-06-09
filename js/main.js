@@ -3,15 +3,32 @@ var site = 'https://backoffice.iperbooking.cristiano/';
 // LINGUA
 const staticheight = 24;
 let nowheight=0, multipleindex=0;
-const arraylanguage = ['en','it','fr','es','de','ru','zh'];
+const arraylanguage = ['en','it','fr','es','de'];
+const langcookiename="language";
+var translator = $('body').translate({lang: "en", t: dict}); //initialize dictionary in English
+loadLang();
+function loadLang() {
+  let cookievalue = getCookie(langcookiename);
+  if(cookievalue != "")
+  {
+    for (let index = 0; index < arraylanguage.length; index++) {
+      if(arraylanguage[index]==cookievalue)
+      {
+        multipleindex = index;
+      }
+    }
+    translator.lang(arraylanguage[multipleindex]); //change to any language
+  }
+  else
+  {
+    setCookieLang();
+  }
+}
 
 // LOGIN
 var id; //id utente
 var nome, email, profilepic; //page user
 
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: arraylanguage[multipleindex]}, 'google_translate_element');
-}
 
 function serviceWorkerRegister() {
   'use strict';

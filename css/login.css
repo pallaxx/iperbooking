@@ -2,6 +2,11 @@
 	text-align: center;
 }
 
+.fullscreen #form {
+	margin-top: 80px;
+
+}
+
 .fullscreen .container#Login .row{
 	text-align: center;
 	justify-content: center;

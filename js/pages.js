@@ -1,28 +1,16 @@
-loadLang();
+viewLang();
+
 // PRENOTAZIONI
 var pagenumber=1,maxpages; //page prenotazioni
-const arraygiorni = ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
+const arraygiorni = ["january","february","march","april","may","june","july","august","september","october","november","december"];
 
 // ------ user page --------------------------------------------------------------------------------------------------------------
-function loadLang() {
+function viewLang() {
   var tmp="";
   for (let index = 0; index < arraylanguage.length; index++) {
     tmp += "<span>"+arraylanguage[index].toUpperCase()+"</span><br>";
   }
   document.getElementById('lang').innerHTML = tmp;
-  
-  let userlang = getCookie("googtrans");
-  if(userlang != "")
-  {
-    var splitted = userlang.split('/');
-    for (let index = 0; index < arraylanguage.length; index++) {
-      if(arraylanguage[index]==splitted[2])
-      {
-        multipleindex = index;
-        break;
-      }
-    }
-  }
 }
 
 function BackLang() {
@@ -54,10 +42,6 @@ function setLang() {
   nowheight=staticheight*multipleindex;
   lang.scrollTo(0,nowheight);
 }
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: arraylanguage[multipleindex], layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-}
-
 
 //AJAX per sloggare
 function Logout() {
@@ -101,13 +85,13 @@ function elencoPrenotazioni() {
       if(json.data[index].eliminata)          //CLICCANDO IN QUELLA PRENOTAZIONE RICHIEDE TRAMITE L'ID LA PRNOTAZIONE E STAMPA UNA PAGINA
         row += '<div class="prenotazione eliminata" onclick="redirectPrenotazione('+json.data[index].id+')">';
       else
-        row += '<div class="prenotazione" onclick="RedirectPrenotazione('+json.data[index].id+')">';
+        row += '<div class="prenotazione" onclick="redirectPrenotazione('+json.data[index].id+')">';
        
        row += '<div class="dataprenotazione">'+ stampaData(json.data[index].dataPrenotazione) + ' ' + json.data[index].orarioPrenotazione +'</div>'; //DATA DI PRENOTAZIONE
        row += '<div class="cliente">'+json.data[index].cliente+'</div>'; //NOME COGNOME CLIENTE
        row += '<div class="canale">'+json.data[index].sito+'</div>';   //CANALE DELLA PRENOTAZIONE
        row += '<div class="stagione_periodo">'; // STAGIONE E PERIODO
-         row += '<div class="stagione-group">'+stampaGiorno(json.data[index].arrivo)+'</div>';
+         row += '<div class="stagione-group trn">'+stampaGiorno(json.data[index].arrivo)+'</div>';
          row += '<div class="periodo-group">' + stampaDataNoAnno(json.data[index].arrivo) +' - '+ stampaDataNoAnno(json.data[index].partenza) + '</div>';
        row += '</div>';
        row += '<div class="camere_notti">'; // CAMERE E NOTTI
@@ -279,13 +263,12 @@ function viewUser() { //pagina che si apre cliccando l'icona (nella home)
 }
 function closeUser() {
   document.getElementById("user").style.display = 'none';
-  
-  if(document.cookie != "googtrans=/"+arraylanguage[multipleindex])
-  {
-    const d = new Date();
-    d.setTime(d.getTime() + (30*24*60*60*1000));
-    document.cookie = "googtrans=/en/"+arraylanguage[multipleindex]+"; expires="+ d.toUTCString()+";domain=site.test; path=/";
-    document.cookie = "googtrans=/"+arraylanguage[multipleindex]+"; expires="+ d.toUTCString()+";domain=.site.test; path=/";
-    location.reload();
-  }
+  setCookieLang();
+}
+
+function setCookieLang() {
+  const d = new Date();
+  d.setTime(d.getTime() + (30*24*60*60*1000));
+  document.cookie = langcookiename+"="+arraylanguage[multipleindex]+"; expires="+ d.toUTCString()+"; path=/";
+  translator.lang(arraylanguage[multipleindex]); //change to any language
 }
