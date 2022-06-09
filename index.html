@@ -12,22 +12,29 @@
         <link rel="stylesheet" href="css/pages.css">
 
         <!-- meta pwa -->
-         <link rel="manifest" href="manifest.json"> <!-- manifest -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="manifest" href="manifest.json"> <!-- manifest -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta viewport="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" mobileappios="true">
+        <meta name="full-screen" content="yes">
+        <meta name="browsermode" content="application">
+        <meta name="screen-orientation" content="portrait">
         <meta name="description" content="una prima prova della pwa">
         <meta name="theme-color" content="white"/>
 
         <link rel="icon" href="favicon.ico" type="image/x-icon" />  
         <link rel="apple-touch-icon" href="images/iperbooking-icon-152.png">   
         <meta name="theme-color" content="white"/>  
-        <meta name="apple-mobile-web-app-capable" content="yes">  
+        <meta name="mobile-web-app-capable" content= "yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black"> 
         <meta name="apple-mobile-web-app-title" content="iperbooking"> 
-        <meta name="msapplication-TileImage" content="images/iperbooking-icon-144.png">  
+        <meta name="msapplication-TileImage" content="images/iperbooking-icon-192.png">  
         <meta name="msapplication-TileColor" content="#FFFFFF">
         
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     </head>
     <body class="fullscreen">
+        
+        <div id="google_translate_element" style="display: none;"></div>
         <!-- PAGINA DI CARICAMENTO -->
         <div id="loading" class="page">
             <img src="images/loading-page.gif" alt="">
@@ -42,7 +49,7 @@
                 <div class="row justify-center">
                     <div class="col-3 mt-2">
                         <a onclick="viewUser()">
-                            <img id="profilepic" src="" class="img-fluid rounded-circle" style="width: 50px; height:50px;" alt="profile-image">
+                            <img src="" class="img-fluid rounded-circle profilepic" style="width: 50px; height:50px;" alt="profile-image">
                         </a> 
                     </div>
                     <div class="logo col-9">
@@ -51,21 +58,25 @@
                 </div>
             </div>
             <div class="container">
-                <a onclick="viewLoading('2')">CARICA</a> <!-- come si usa -->
+                <a onclick="viewLoading('2')">loading 2 sec</a> <!-- come si usa il caricamento -->
+                <a onclick="viewLoading('4')">loading 4 sec</a>
+                <a onclick="viewLoading('8')">loading 8 sec</a>
+                <a onclick="viewLoading('20')">loading 20 sec</a>
+                <a onclick="viewLoading('60')">loading 40 sec</a>
             </div>
         </div>
 
         <!-- USER -->
-        <div id="user" class="page">
-            <div class="close" onclick="viewHome()">
+        <div id="user" class="page" style="display: none;">
+            <div class="close" onclick="closeUser()">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                 </svg>
             </div>
-            <div class="container-fluid" style="margin-top:50px;">
+            <div class="container-fluid">
                 <div class="p-3 row flex-column justify-center">
                     <div class="profile_picture">
-                        <img id="bigprofilepic" src="" class="img-fluid rounded-circle" style="width: 100px; height:100px;" alt="profile-image">
+                        <img id="bigprofilepic" src="" class="img-fluid rounded-circle profilepic" style="width: 100px; height:100px;" onclick="cambiaProfilePic()" alt="profile-image">
                     </div>
                     <div class="">
                         <p class="h2" id="user_nome"></p>
@@ -73,15 +84,44 @@
                 </div>
             </div>
             <div class="container-fluid">
-                <div class="p-2 row">
-                    <label for="staticEmail" class="col-auto col-form-label">Email</label>
-                    <input type="text" readonly class="form-control-plaintext" onclick="copy(this.value)" aria-label="copied to clipboard!" id="user_email" value="">
+                <div class="m-2 row input" onclick="cambiaEmail()">
+                    <div class="col-4">
+                        <label class="col-auto col-form-label">Email</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" readonly class="form-control-plaintext" id="user_email" value="">
+                    </div>
                 </div>
-                <div class="p-3 row flex-column bd-highlight">
-                    <p class="h4">Link Utili:</p>
-                    <p id="user_sites"></p>
+                <div class="m-2 row input" onclick="cambiaPassword()">
+                    <div class="col-4">
+                        <label class="col-auto col-form-label">Password</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="password" readonly class="form-control-plaintext" value="aaaaaaaa">
+                    </div>
                 </div>
-                <div class="p-3 row bd-highlight">
+                <div class="m-2 row input" onclick="cambiaLingua()">
+                    <div class="col-4">
+                        <label class="col-auto col-form-label">Language</label>
+                    </div>
+                    <div class="col-8 row" style="align-items: center;">
+                        <div class="row">
+                            <div class="col-2" onclick="BackLang()">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                                </svg>
+                            </div>
+                            <div class="col-7" id="lang">
+                            </div>
+                            <div class="col-2" onclick="forwardLang()">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-3 row bd-highlight" style="margin-top: 60px;">
                     <p class="h1" onclick="Logout()">Logout</p>
                 </div>
             </div>
@@ -91,7 +131,7 @@
     
         <!-- INIZIO PAGINE -->
         <!-- PRENOTAZIONI -->
-        <div id="prenotazioni" class="page">
+        <div id="prenotazioni" class="page" style="display: none;">
             <div class="container-fluid mt-3 mb-3">
                 <div class="row flex-column justify-center">
                     <div class="input-group">
@@ -111,42 +151,46 @@
             </div>
         </div>
         <div id="filter">
-            <div onclick="viewPrenotazioni()" class="vuoto">
+            <div onclick="viewPrenotazioni()" class="vuoto"> <!--  appena si esce dal filtro riaggiorna tutte le prenotazioni  -->
 
             </div>
             <div class="container-fluid">
                 <span>
-                    FILTRA PER
+                    FILTER BY
                 </span>
                 <div class="canali field d-flex flex-column align-items-center justify-content-center">
                     <select name="" id="filter_canali">
-                        <option value="TUTTI I CANALI">TUTTI I CANALI</option>
-                        <option value="iperbooking">iperbooking</option>
-                        <option value="crm">CRM</option>
-                        <option value="booking.com">booking.com</option>
-                        <option value="expedia">expedia</option>
-                        <option value="facebook">facebook</option>
-                        <option value="tripadvisor">tripadvisor</option>
-                        <option value="trivago">trivago</option>
+                        <option value="0">ALL CHANNELS</option>
+                        <option value="1">iperbooking</option>
+                        <option value="83">CRM</option>
+                        <option value="3">booking.com</option>
+                        <option value="4">expedia</option>
+                        <option value="14">facebook</option>
+                        <option value="50">tripadvisor</option>
+                        <option value="36">trivago</option>
                     </select>
                 </div>
 
                 <div class="date field d-flex flex-column align-items-center justify-content-center">
                     <div class="d-flex align-items-center justify-content-center">
-                        da
+                        from
                         <input type="date" name="" id="filter_arrivo">
-                        a
+                        to
                         <input type="date" name="" id="filter_partenza">
                     </div>
                 </div>
 
                 <div class="filtradata field d-flex flex-column align-items-center justify-content-center">
                     <select name="" id="filter_filtradata">
-                        <option value="effettuata">prenotazione effettuata</option>
-                        <option value="arrivo">arrivo</option>
-                        <option value="partenza">partenza</option>
-                        <option value="presenza">presenza</option>
+                        <option value="prenotata">confirmed booking</option>
+                        <option value="arrivo">arrival</option>
+                        <option value="partenza">departure</option>
+                        <option value="presenza">existing</option>
                     </select>
+                </div>
+                <div class="filtraeliminate p-0 m-2 field d-flex flex-column align-items-center justify-content-center form-check form-switch">
+                    <label class="form-check-label" for="filter_filtraeliminate">Deleted</label>
+                    <input class="form-check-input" type="checkbox" role="switch" id="filter_filtraeliminate">
                 </div>
             </div>
         </div>
@@ -154,7 +198,7 @@
 
 
         <!-- CALENDAR -->
-        <div id="calendar" class="page">
+        <div id="calendar" class="page" style="display: none;">
             <div class="container-fluid">
 
             </div>
@@ -166,7 +210,7 @@
 
 
         <!-- APPLE -->
-        <div id="apple" class="page">
+        <div id="apple" class="page" style="display: none;">
             <div class="container-fluid">
 
             </div>
@@ -178,58 +222,72 @@
 
 
         <!-- SETTINGS -->
-        <div id="settings" class="page">
-            <div class="container-fluid">
-
+        <div id="settings" class="page" style="display: none;">
+            <div class="header">
+                <div class="row justify-center">
+                    <div class="col-3 mt-2">
+                        <a onclick="viewUser()">
+                            <img src="" class="img-fluid rounded-circle profilepic" style="width: 50px; height:50px;" alt="profile-image">
+                        </a> 
+                    </div>
+                    <div class="col-9">
+                        Settings
+                    </div>
+                </div>
             </div>
             <div class="container-fluid">
+                <div class="struttura">
 
+                </div>
+                <div class="lingua">
+
+                </div>
             </div>
         </div>
         
 
 
         <!-- NAVBAR -->
-        <nav id="navbar" class="p-0 navbar fixed-bottom navbar-expand-sm navbar-dark bg-white">
+        <nav id="navbar" class="p-0 bg-white">
             <div class="container-fluid justify-content-center">
-                <ul class="navbar-nav flex-row" >
-                    <li class="d-flex flex-column align-items-center justify-content-center m-1 rounded-circle text-dark nav-item" style="width: 60px; height:60px;">
+                <ul class="navbar-nav justify-content-center flex-row" >
+                    <li class="d-flex flex-column align-items-center justify-content-center m-1 rounded-circle text-dark nav-item" style="width: 60px;">
                         <a onclick="viewPrenotazioni()" style="transform: rotate(-45deg);">
                             <svg id="navbar_prenotazioni" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-key-fill" viewbox="0 0 16 16">
                                 <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
                             </svg>                            
                         </a>
-                        <label for="prenotazioni">Prenotazioni</label>
+                        <label for="prenotazioni">Bookings</label>
                     </li>
-                    <li class="d-flex flex-column align-items-center justify-content-center m-1 rounded-circle text-dark nav-item" style="width: 60px; height:60px;">
+                    <li class="d-flex flex-column align-items-center justify-content-center m-1 rounded-circle text-dark nav-item" style="width: 60px;">
                         <a onclick="viewCalendar()">
                             <svg id="navbar_calendar" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-calendar-week-fill" viewbox="0 0 16 16">
                                 <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zM9.5 7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm3 0h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zM2 10.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z"/>
                             </svg>
                         </a>
-                        <label for="disponibilita">Calendario</label>
+                        <label for="disponibilita">Availability</label>
                     </li>
-                    <li class="d-flex flex-column align-items-center justify-content-center m-1 rounded-circle text-dark nav-item" style="width: 60px; height:60px;">
+                    <li class="d-flex flex-column align-items-center justify-content-center m-1 rounded-circle text-dark nav-item" style="width: 60px;">
                         <a onclick="viewHome()">
                             <img id="navbar_home" class="rounded-circle" src="images/iperbooking-icon-128.png" width="60px" height="60px" alt="">
                         </a>
                     </li>
-                    <li class="d-flex flex-column align-items-center justify-content-center m-1 rounded-circle text-dark nav-item" style="width: 60px; height:60px;">
+                    <li class="d-flex flex-column align-items-center justify-content-center m-1 rounded-circle text-dark nav-item" style="width: 60px;">
                         <a onclick="viewApple()">
                             <svg id="navbar_apple" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-apple" viewbox="0 0 16 16">
                                 <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z"/>
                                 <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z"/>
                             </svg>
                         </a>
-                        <label for="apple">Apple</label>
+                        <label for="apple">PMS</label>
                     </li>
-                    <li class="d-flex flex-column align-items-center justify-content-center m-1 rounded-circle text-dark nav-item" style="width: 60px; height:60px;">
+                    <li class="d-flex flex-column align-items-center justify-content-center m-1 rounded-circle text-dark nav-item" style="width: 60px;">
                         <a onclick="viewSettings()">
                             <svg id="navbar_settings" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-gear-wide" viewbox="0 0 16 16">
                                 <path d="M8.932.727c-.243-.97-1.62-.97-1.864 0l-.071.286a.96.96 0 0 1-1.622.434l-.205-.211c-.695-.719-1.888-.03-1.613.931l.08.284a.96.96 0 0 1-1.186 1.187l-.284-.081c-.96-.275-1.65.918-.931 1.613l.211.205a.96.96 0 0 1-.434 1.622l-.286.071c-.97.243-.97 1.62 0 1.864l.286.071a.96.96 0 0 1 .434 1.622l-.211.205c-.719.695-.03 1.888.931 1.613l.284-.08a.96.96 0 0 1 1.187 1.187l-.081.283c-.275.96.918 1.65 1.613.931l.205-.211a.96.96 0 0 1 1.622.434l.071.286c.243.97 1.62.97 1.864 0l.071-.286a.96.96 0 0 1 1.622-.434l.205.211c.695.719 1.888.03 1.613-.931l-.08-.284a.96.96 0 0 1 1.187-1.187l.283.081c.96.275 1.65-.918.931-1.613l-.211-.205a.96.96 0 0 1 .434-1.622l.286-.071c.97-.243.97-1.62 0-1.864l-.286-.071a.96.96 0 0 1-.434-1.622l.211-.205c.719-.695.03-1.888-.931-1.613l-.284.08a.96.96 0 0 1-1.187-1.186l.081-.284c.275-.96-.918-1.65-1.613-.931l-.205.211a.96.96 0 0 1-1.622-.434L8.932.727zM8 12.997a4.998 4.998 0 1 1 0-9.995 4.998 4.998 0 0 1 0 9.996z"/>
                             </svg>
                         </a>
-                        <label for="settings">Impostazioni</label>
+                        <label for="settings">Settings</label>
                     </li>
                 </ul>
             </div>

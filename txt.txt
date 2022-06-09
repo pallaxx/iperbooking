@@ -1,4 +1,2 @@
--fitro
-
 - nella pagina prenotazioni prendere fare chiamata ajax normale
 dell'eleno ma mostrare tutto in una pagina fatta male aspettando l'altra ajax

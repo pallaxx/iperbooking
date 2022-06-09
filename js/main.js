@@ -1,8 +1,17 @@
 var site = 'https://backoffice.iperbooking.cristiano/';
-var nome, email, profilepic; //page user
-var pagenumber=1,maxpages; //page prenotazioni
-const arraygiorni = ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
 
+// LINGUA
+const staticheight = 24;
+let nowheight=0, multipleindex=0;
+const arraylanguage = ['en','it','fr','es','de','ru','zh'];
+
+// LOGIN
+var id; //id utente
+var nome, email, profilepic; //page user
+
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: arraylanguage[multipleindex]}, 'google_translate_element');
+}
 
 function serviceWorkerRegister() {
   'use strict';
@@ -22,7 +31,9 @@ window.onload = () => {
 
     // navbar update
     profilepic = "https://images.theconversation.com/files/443350/original/file-20220131-15-1ndq1m6.jpg?ixlib=rb-1.1.0&rect=0%2C0%2C3354%2C2464&q=45&auto=format&w=926&fit=clip";//perchè le immagini risiedono su protocollo http
-    document.getElementById("profilepic").src = profilepic;
+    for (let index = 0; index < document.getElementsByClassName("profilepic").length; index++) {
+      document.getElementsByClassName("profilepic")[index].src = profilepic;
+    }
   } catch (error) {}
 }
 function findCrossCookies() {
@@ -39,6 +50,7 @@ function findCrossCookies() {
       let json = JSON.parse(this.responseText);
       if (!json.hasOwnProperty('error'))
       {
+        id = json.id;
         nome = json.nome + ' ' + json.cognome;
         email = json.email;
         profilepic = "https://iperbooking.cristiano/"+json.foto;
@@ -58,3 +70,22 @@ function findCrossCookies() {
 //       credenziali di prova
 // email: alex.mazzoni17@gmail.com
 // pdw: Test123456
+
+
+
+//manage cookie
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}

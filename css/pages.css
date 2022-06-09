@@ -5,9 +5,32 @@
 }
 
 /* HOME */
+.fullscreen .page#home .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 40px;
+}
+.fullscreen .page#home .container a {
+    margin-top: 30px;
+}
 
 
 /* USER */
+.fullscreen .page#user {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    z-index: 7000;
+}
 .fullscreen .page#user .close {
     position: absolute;
     top: 0;
@@ -16,6 +39,42 @@
 }
 .fullscreen .page#user .close svg {
     width: 50px;
+}
+.fullscreen #user .container-fluid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.fullscreen #user .row.input{
+    border: 1px solid black;
+    border-radius: 8px;
+}
+.fullscreen #user .row label{
+    width: 100px;
+}
+.fullscreen #user .row input{
+	text-align: center;
+    text-shadow: none;
+    box-shadow: none;
+	max-width: 250px;
+}
+.fullscreen #user .row svg{
+    width: 18px;
+    height: 18px;
+}
+.fullscreen #user .row .col-2{
+    justify-content: center;
+    padding: 0;
+}
+.fullscreen #user .row .col-7{
+    justify-content: center;
+    overflow: hidden;
+    width: 40px !important;
+    height: 20px !important;
+}
+.fullscreen #user .row .col-7 span{
+    overflow: hidden;
 }
 
 
@@ -46,10 +105,10 @@
     width: 100%;
 }
 .fullscreen #filter .vuoto {
-    height: 20vh;
+    height: 40vh;
 } .fullscreen #filter .container-fluid {
     position: absolute;
-    height: 80vh;
+    height: 60vh;
     z-index: 5001;
     border-radius: 8px 8px 0px 0px;
     border-top: 2px solid black;
@@ -64,12 +123,13 @@
     padding: 20px;
 }
 .fullscreen #filter .container-fluid .field {
-    margin-top: 0px;
+    margin-top: 30px;
 }
 
 /* CANALI */
 .fullscreen #filter .container-fluid .field.canali {
     width: 100%;
+    margin-top: 0;
 }
 .fullscreen #filter .container-fluid .field.canali select{
     width: 100%;
@@ -81,19 +141,16 @@
 
 /* DATE */
 .fullscreen #filter .container-fluid .field.date {
-    margin-top: 60px;
     width: 100%;
 }
 .fullscreen #filter .container-fluid .field.date input{
     width: 100%;
-    padding: 10px;
     text-align: center;
     border: 0;
 }
 
 /* CATEGORIE */
 .fullscreen #filter .container-fluid .field.filtradata {
-    margin-top: 60px;
     width: 100%;
 }
 .fullscreen #filter .container-fluid .field.filtradata select{
@@ -102,6 +159,18 @@
     font-size: 20px;
     padding: 8px ;
     border: 0;
+}
+/* ELIMINATE */
+.fullscreen #filter .container-fluid .field.filtraeliminate label{
+    font-size: 32px;
+}
+.fullscreen #filter .container-fluid .field.filtraeliminate #filter_filtraeliminate{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 30px;
+    margin-left: 6px;
+    width: 60px;
 }
 
 /* ELENCO */
@@ -123,33 +192,39 @@
     width: 100%;
     max-width: 400px;
     position: relative;
-    height: 15vh;
+    height: fit-content;
     border-top: 1px solid #000;
+}
+.fullscreen .page#prenotazioni #elenco .prenotazione.eliminata {
+    color: #F00;
+    text-decoration: line-through;
 }
 .fullscreen .page#prenotazioni #elenco .prenotazione:nth-last-child(2){
     border-bottom: 1px solid #000;
 }
 /* DATA PRENOTAZIONE */
 .fullscreen .page#prenotazioni #elenco .prenotazione .dataprenotazione{
-    position: absolute;
+    position: relative;
     top: 1vh;
-    left: 1em;
+    width: 100px;
+    text-align: center;
     font-size: 11px;
 }
 /* CLIENTE */
 .fullscreen .page#prenotazioni #elenco .prenotazione .cliente{
-    position: absolute;
-    top: 4vh;
-    left: .5em;
+    position: relative;
+    top: 2vh;
+    left: 0.5em;
     width: 200px;
     height: 7vh;
     font-size: 16px;
 }
 /* CANALE */
 .fullscreen .page#prenotazioni #elenco .prenotazione .canale{
-    position: absolute;
-    top: 10vh;
+    position: relative;
+    top: 100%;
     left: 4em;
+    width: 200px;
     font-size: 16px;
 }
 
@@ -197,7 +272,7 @@
 
 /* INDICE */
 .fullscreen .page#prenotazioni #elenco .indice {
-    margin-top: 2px;
+    margin-top: 20px;
     margin-bottom: 2px;
     display: inline-flex;
 }
@@ -213,10 +288,32 @@
     margin-left: 1em;
 }
 
+
+/* SETTINGS */
+.fullscreen .page#settings .header {
+}
+.fullscreen .page#settings .header .col-2 svg {
+
+}
+.fullscreen .page#settings .header .col-9{
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fullscreen .page#settings .container-fluid {
+    margin-top: 30px;
+}
+
+
 /* NAVBAR */
 .fullscreen nav{
     opacity: 1;
     z-index: 5000;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 .fullscreen nav ul li a svg{
     width: 32px;
@@ -242,8 +339,4 @@
 }
 .fullscreen nav ul li a img.active{
     border: 1px solid var(--primary);
-}
-.fullscreen #user .row #user_email{
-	text-align: center;
-	max-width: 250px;
 }

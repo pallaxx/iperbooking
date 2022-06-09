@@ -27,6 +27,7 @@ function handleLoginResponse() {
         document.getElementById("loginmsg").innerHTML = "";
         document.getElementById("btnform").innerHTML = '<div class="btn" id="btnlogin" onclick="requestAuthCode()"><span>Login</span></div>';
         requestcode = json.confirmationRequestCode;
+        findCrossCookies();
       }
       else
         document.getElementById("loginmsg").innerHTML = json.messaggio;
