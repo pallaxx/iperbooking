@@ -123,118 +123,157 @@ var dict = {
     },
     "availability": {
         en: "Availability",
-        it: "Disponibilità"
+        it: "Disponibilità",
+        es: "Disponibilidad"
     },
     "Login": {
         en: "Login",
-        it: "Accedi"
+        it: "Accedi",
+        es: "Acceso"
     },
     "Logout": {
         en: "Logout",
-        it: "Disconnettiti"
+        it: "Esci",
+        es: "Salir"
     },
     "loading": {
         en: "loading",
-        it: "caricamento"
+        it: "caricamento",
+        es: "cargando"
     },
     "Language": {
         en: "Language",
-        it: "Lingua"
+        it: "Lingua",
+        es: "Idioma"
     },
+    "email successfully sent!": {
+        en: "email successfully sent!",
+        it: "email inviata con successo!",
+        es: ""
+    },
+    "click to reset password!": {
+        en: "click to reset password!",
+        it: "clicca per reimpostare la password!",
+        es: ""
+    }, 
     "Settings": {
         en: "Settings",
-        it: "Impostazioni"
+        it: "Impostazioni",
+        es: "Ajustes"
     },
     "january": {
         en: "january",
-        it: "gennaio"
+        it: "gennaio",
+        es: "enero"
     },
     "february": {
         en: "february",
-        it: "febbraio"
+        it: "febbraio",
+        es: "febrero"
     },
     "march": {
         en: "march",
-        it: "marzo"
+        it: "marzo",
+        es: "marzo"
     },
     "april": {
         en: "april",
-        it: "aprile"
+        it: "aprile",
+        es: "abril"
     },
     "may": {
         en: "may",
-        it: "maggio"
+        it: "maggio",
+        es: "mayo"
     },
     "june": {
         en: "june",
-        it: "giugno"
+        it: "giugno",
+        es: "junio"
     },
     "july": {
         en: "july",
-        it: "luglio"
+        it: "luglio",
+        es: "julio"
     },
     "august": {
         en: "august",
-        it: "agosto"
+        it: "agosto",
+        es: "agosto"
     },
     "september": {
         en: "september",
-        it: "settembre"
+        it: "settembre",
+        es: "septiembre"
     },
     "october": {
         en: "october",
-        it: "ottobre"
+        it: "ottobre",
+        es: "octubre"
     },
     "november": {
         en: "november",
-        it: "novembre"
+        it: "novembre",
+        es: "noviembre"
     },
     "december": {
         en: "december",
-        it: "dicembre"
+        it: "dicembre",
+        es: "diciembre"
     },
     "FILTER BY": {
         en: "FILTER BY",
-        it: "FILTRA PER"
+        it: "FILTRA PER",
+        es: "FILTRADO POR"
     },
     "search": {
         en: "Search",
-        it: "Cerca"
+        it: "Cerca",
+        es: "ajustes"
     },
     searchfield: { 
         en: "Search Bookings",
         it: "Cerca Prenotazioni",
+        es: "ajustes"
       },
     "all channels": {
         en: "ALL CHANNELS",
-        it: "TUTTI I CANALI"
+        it: "TUTTI I CANALI",
+        es: "ajustes"
     },
     "from": {
         en: "from",
-        it: "da"
+        it: "da",
+        es: "ajustes"
     },
     "to": {
         en: "to",
-        it: "a"
+        it: "a",
+        es: "ajustes"
     },
     "confirmed booking": {
         en: "confirmed booking",
-        it: "prenotazione effettuata"
+        it: "prenotazione effettuata",
+        es: "ajustes"
     },
     "arrival": {
         en: "arrival",
-        it: "arrivo"
+        it: "arrivo",
+        es: "ajustes"
     },
     "departure": {
         en: "departure",
-        it: "partenza"
+        it: "partenza",
+        es: "ajustes"
     },
     "existing": {
         en: "existing",
-        it: "presenza"
+        it: "presenza",
+        es: "ajustes"
     },
     "deleted": {
         en: "Deleted",
-        it: "Eliminate"
+        it: "Eliminate",
+        es: "ajustes"
     }
   }

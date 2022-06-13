@@ -1,10 +1,21 @@
 viewLang();
 
-// PRENOTAZIONI
-var pagenumber=1,maxpages; //page prenotazioni
-const arraygiorni = ["january","february","march","april","may","june","july","august","september","october","november","december"];
-
 // ------ user page --------------------------------------------------------------------------------------------------------------
+function cambiaPsw() {
+  var url = site+"/ajax/proxy.cfm?action=utente.inviaEmailModificaPassword&idutente="+id;
+  let xhrcambiapsw = new XMLHttpRequest();
+  xhrcambiapsw.open("GET", url, true);
+  xhrcambiapsw.send();
+  xhrcambiapsw.onload = handleCambiaPswResponse;
+}
+function handleCambiaPswResponse() {
+  if(this.status==200)
+  {
+    document.getElementById("user_psw").onclick = 0;
+    document.getElementById("user_pswspan").innerHTML = "email successfully sent!";
+  }
+}
+
 function viewLang() {
   var tmp="";
   for (let index = 0; index < arraylanguage.length; index++) {
@@ -57,8 +68,11 @@ function Logout() {
 }
 
 // ------ prenotazione page --------------------------------------------------------------------------------------------------------------
-//AJAX per le prenotazioni
+// variabili
+var pagenumber=1,maxpages; //page prenotazioni
+const arraygiorni = ["january","february","march","april","may","june","july","august","september","october","november","december"];
 
+//AJAX per l'elenco delle prenotazioni
 function elencoPrenotazioni() {
     //suddivisione di ogni filtro
     let codice = document.getElementById("prenotazioni_search").value; //filtra per codice o nome (un po di tutto)
@@ -69,6 +83,8 @@ function elencoPrenotazioni() {
     let filtroeliminate = "";
     if(document.getElementById("filter_filtraeliminate").checked)
       filtroeliminate = "&filtroEliminate=I";
+    
+      // inizio richiesta
     var url = site+"/ajax/proxy.cfm?action=prenotazione.cerca&codice="+codice+"&canale="+canale+"&dal="+data_partenza+"&al="+data_arrivo+"&filtroData="+filtradataper+filtroeliminate+"&page="+pagenumber+"&pageSize=10&sort%5B0%5D%5Bfield%5D=id&sort%5B0%5D%5Bdir%5D=desc&_=1653313538581";
     let xhrelencop = new XMLHttpRequest();
     xhrelencop.withCredentials = true;
@@ -151,6 +167,38 @@ function stampaGiorno(stringadata) {return arraygiorni[parseInt(stringadata.slic
 
 
 
+// ------ disponibilita page --------------------------------------------------------------------------------------------------------------
+let gruppi = [];
+
+//AJAX per l'elenco dei gruppi creati
+function elencoGruppi() {
+  var url = site+"/ajax/proxy.cfm?action=disponibilita.elencoGruppi";
+  let xhrelencog = new XMLHttpRequest();
+  xhrelencog.withCredentials = true;
+  xhrelencog.open("GET", url, true);
+  xhrelencog.send();
+  xhrelencog.onload = handleElencoGruppiResponse; 
+} function handleElencoGruppiResponse() {
+  if(this.status==200)
+  {
+    let json = JSON.parse(this.responseText);
+    for (let index = 0; index < json.count; index++) {
+      let gruppo = {
+          "id": json.data[index].id,
+          "name": json.data[index].nome,
+          "color": json.data[index].colore
+        };
+      gruppi.push(gruppo);
+    }
+  }
+}
+
+
+function costruisciGriglia() {
+
+}
+
+
 // ------ settings page --------------------------------------------------------------------------------------------------------------
 //AJAX per l'elenco di strutture dell'utente
 function elencoStrutture() {
@@ -161,16 +209,15 @@ function elencoStrutture() {
   xhrelencos.send();
   xhrelencos.onload = handleElencoStruttureResponse; 
 } function handleElencoStruttureResponse() {
-if(this.status==200)
-{
-  let json = JSON.parse(this.responseText);
-  if(json.count>1)
+  if(this.status==200)
   {
+    let json = JSON.parse(this.responseText);
+    if(json.count>1)
+    {
 
-
-    document.getElementById("").innerHTML = input;
+      document.getElementById("").innerHTML = input;
+    }
   }
-}
 }
 
 
@@ -199,16 +246,18 @@ function showFilter() {
   document.getElementById("filter").style.opacity = 1;
 }
 
-function viewCalendar() { //pagina tutta a sinistra (la chiave)
+function viewDisponibilita() { //pagina tutta a sinistra (la chiave)
   clearPages();
-  document.getElementById("navbar_calendar").classList.add("active");
-  document.getElementById("calendar").style.display = '';
+  document.getElementById("navbar_disponibilita").classList.add("active");
+  document.getElementById("disponibilita").style.display = '';
+  
+  elencoGruppi();
 }
 
-function viewApple() { //pagina tutta a sinistra (la chiave)
+function viewCRM() { //pagina tutta a sinistra (la chiave)
   clearPages();
-  document.getElementById("navbar_apple").classList.add("active");
-  document.getElementById("apple").style.display = '';
+  document.getElementById("navbar_crm").classList.add("active");
+  document.getElementById("crm").style.display = '';
 }
 
 function viewSettings() { //pagina tutta a sinistra (la chiave)
@@ -231,11 +280,11 @@ function clearPages() {
   document.getElementById("navbar_prenotazioni").classList.remove("active");
   document.getElementById("filter").style.display = 'none';
 
-  document.getElementById("calendar").style.display = 'none';
-  document.getElementById("navbar_calendar").classList.remove("active");
+  document.getElementById("disponibilita").style.display = 'none';
+  document.getElementById("navbar_disponibilita").classList.remove("active");
 
-  document.getElementById("apple").style.display = 'none';
-  document.getElementById("navbar_apple").classList.remove("active");
+  document.getElementById("crm").style.display = 'none';
+  document.getElementById("navbar_crm").classList.remove("active");
 
   document.getElementById("settings").style.display = 'none';
   document.getElementById("navbar_settings").classList.remove("active");
@@ -259,6 +308,7 @@ function viewUser() { //pagina che si apre cliccando l'icona (nella home)
   document.getElementById("bigprofilepic").src = profilepic;
   document.getElementById("user_nome").innerHTML = nome;
   document.getElementById("user_email").value = email;
+  document.getElementById("user_psw").onclick = cambiaPsw;
   setLang();
 }
 function closeUser() {

@@ -48,6 +48,9 @@
     justify-content: center;
     align-items: center;
 }
+.fullscreen #user .row .col{
+    padding: 8px 32px;
+}
 .fullscreen #user .row.input{
     border: 1px solid black;
     border-radius: 8px;
@@ -155,6 +158,14 @@
 .fullscreen #filter .container-fluid .field.date {
     width: 100%;
 }
+.fullscreen #filter .container-fluid .field.date span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    font-size: 18px;
+}
 .fullscreen #filter .container-fluid .field.date input{
     width: 100%;
     text-align: center;
@@ -181,8 +192,9 @@
     align-items: center;
     text-align: center;
     height: 30px;
-    margin-left: 6px;
     width: 60px;
+    padding: 0;
+    margin: 0;
 }
 
 /* ELENCO */

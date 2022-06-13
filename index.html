@@ -36,7 +36,7 @@
         
         <div id="google_translate_element" style="display: none;"></div>
         <!-- PAGINA DI CARICAMENTO -->
-        <div id="loading" class="page">
+        <div id="loading" class="page" >
             <img src="images/loading-page.gif" alt="">
             <div class="progress">
                 <span id="loading_bar" class="value"></span>
@@ -44,7 +44,7 @@
         </div>
 
         <!-- HOME -->
-        <div id="home" class="page">
+        <div id="home" class="page" style="display: none;">
             <div class="header">
                 <div class="row justify-center">
                     <div class="col-3 mt-2">
@@ -84,7 +84,7 @@
                 </div>
             </div>
             <div class="container-fluid">
-                <div class="m-2 row input" onclick="cambiaEmail()">
+                <div class="m-2 row input">
                     <div class="col-4">
                         <label class="col-auto col-form-label">Email</label>
                     </div>
@@ -92,15 +92,12 @@
                         <input type="text" readonly class="form-control-plaintext" id="user_email" value="">
                     </div>
                 </div>
-                <div class="m-2 row input" onclick="cambiaPassword()">
-                    <div class="col-4">
-                        <label class="col-auto col-form-label">Password</label>
-                    </div>
-                    <div class="col-8">
-                        <input type="password" readonly class="form-control-plaintext" value="aaaaaaaa">
+                <div class="m-2 row input">
+                    <div class="col" id="user_psw" onclick="cambiaPsw()">
+                        <span id="user_pswspan" class="trn">click to reset password!</span>
                     </div>
                 </div>
-                <div class="m-2 row input" onclick="cambiaLingua()">
+                <div class="m-2 row input">
                     <div class="col-4">
                         <label class="col-auto col-form-label trn">Language</label>
                     </div>
@@ -150,7 +147,7 @@
                 </div>
             </div>
         </div>
-        <div id="filter">
+        <div id="filter" style="display: none;">
             <div onclick="viewPrenotazioni()" class="vuoto"> <!--  appena si esce dal filtro riaggiorna tutte le prenotazioni  -->
 
             </div>
@@ -195,8 +192,8 @@
 
 
 
-        <!-- CALENDAR -->
-        <div id="calendar" class="page" style="display: none;">
+        <!-- DISPONIBILITA -->
+        <div id="disponibilita" class="page" style="display: none;">
             <div class="container-fluid">
 
             </div>
@@ -207,8 +204,8 @@
 
 
 
-        <!-- APPLE -->
-        <div id="apple" class="page" style="display: none;">
+        <!-- CRM -->
+        <div id="crm" class="page" style="display: none;">
             <div class="container-fluid">
 
             </div>
@@ -256,8 +253,8 @@
                         <label for="prenotazioni" class="trn">Bookings</label>
                     </li>
                     <li class="d-flex flex-column align-items-center justify-content-center m-1 rounded-circle text-dark nav-item" style="width: 60px;">
-                        <a onclick="viewCalendar()">
-                            <svg id="navbar_calendar" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-calendar-week-fill" viewbox="0 0 16 16">
+                        <a onclick="viewDisponibilita()">
+                            <svg id="navbar_disponibilita" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-calendar-week-fill" viewbox="0 0 16 16">
                                 <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zM9.5 7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm3 0h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zM2 10.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z"/>
                             </svg>
                         </a>
@@ -269,13 +266,13 @@
                         </a>
                     </li>
                     <li class="d-flex flex-column align-items-center justify-content-center m-1 rounded-circle text-dark nav-item" style="width: 60px;">
-                        <a onclick="viewApple()">
-                            <svg id="navbar_apple" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-apple" viewbox="0 0 16 16">
-                                <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z"/>
-                                <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282z"/>
+                        <a onclick="viewCRM()">
+                            <svg id="navbar_crm" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+                                <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
                             </svg>
                         </a>
-                        <label for="apple" class="trn">PMS</label>
+                        <label for="crm" class="trn">CRM</label>
                     </li>
                     <li class="d-flex flex-column align-items-center justify-content-center m-1 rounded-circle text-dark nav-item" style="width: 60px;">
                         <a onclick="viewSettings()">

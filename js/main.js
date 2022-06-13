@@ -19,10 +19,6 @@ function loadLang() {
     }
     translator.lang(arraylanguage[multipleindex]); //change to any language
   }
-  else
-  {
-    setCookieLang();
-  }
 }
 
 // LOGIN
