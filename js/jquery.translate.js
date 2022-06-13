@@ -119,161 +119,289 @@ var dict = {
     "bookings": {
         en: "Bookings",
         it: "Prenotazioni",
-        es: "Reservaciones"
+        es: "Reservaciones",
+        fr: "Réservations",
+        de: "Buchungen",
+        ru: "Бронирование",
+        zh: "预订"
     },
     "availability": {
         en: "Availability",
         it: "Disponibilità",
-        es: "Disponibilidad"
+        es: "Disponibilidad",
+        fr: "Disponibilité",
+        de: "Verfügbarkeit",
+        ru: "Доступность",
+        zh: "可用性"
     },
     "Login": {
         en: "Login",
         it: "Accedi",
-        es: "Acceso"
+        es: "Acceso",
+        fr: "Connexion",
+        de: "Anmeldung",
+        ru: "Авторизоваться",
+        zh: "登录"
     },
     "Logout": {
         en: "Logout",
         it: "Esci",
-        es: "Salir"
+        es: "Salir",
+        fr: "Se déconnecter",
+        de: "Ausloggen",
+        ru: "Выйти",
+        zh: "登出"
     },
     "loading": {
         en: "loading",
         it: "caricamento",
-        es: "cargando"
+        es: "cargando",
+        fr: "chargement en cours",
+        de: "wird geladen",
+        ru: "загрузка",
+        zh: "加载"
     },
     "Language": {
         en: "Language",
         it: "Lingua",
-        es: "Idioma"
+        es: "Idioma",
+        fr: "Langue",
+        de: "Sprache",
+        ru: "Язык",
+        zh: "语"
     },
     "email successfully sent!": {
         en: "email successfully sent!",
         it: "email inviata con successo!",
-        es: ""
+        es: "correo electrónico enviado con éxito!",
+        fr: "e-mail envoyé avec succès!",
+        de: "e-mail erfolgreich versendet!",
+        ru: "письмо успешно отправлено!",
+        zh: "电子邮件已成功发送"
     },
     "click to reset password!": {
         en: "click to reset password!",
         it: "clicca per reimpostare la password!",
-        es: ""
+        es: "haga clic para restablecer la contraseña!",
+        fr: "cliquez pour réinitialiser le mot de passe!",
+        de: "klicken sie hier, um das passwort zurückzusetzen!",
+        ru: "нажмите, чтобы сбросить пароль!",
+        zh: "点击重置密码"
     }, 
     "Settings": {
         en: "Settings",
         it: "Impostazioni",
-        es: "Ajustes"
+        es: "Ajustes",
+        fr: "Réglages",
+        de: "Einstellungen",
+        ru: "Настройки",
+        zh: "设置"
     },
     "january": {
         en: "january",
         it: "gennaio",
-        es: "enero"
+        es: "enero",
+        fr: "janvier",
+        de: "januar",
+        ru: "январь",
+        zh: "一月"
     },
     "february": {
         en: "february",
         it: "febbraio",
-        es: "febrero"
+        es: "febrero",
+        fr: "février",
+        de: "februar",
+        ru: "февраль",
+        zh: "二月"
     },
     "march": {
         en: "march",
         it: "marzo",
-        es: "marzo"
+        es: "marzo",
+        fr: "mars",
+        de: "märz",
+        ru: "марш",
+        zh: "行进"
     },
     "april": {
         en: "april",
         it: "aprile",
-        es: "abril"
+        es: "abril",
+        fr: "avril",
+        de: "april",
+        ru: "апреля",
+        zh: "四月"
     },
     "may": {
         en: "may",
         it: "maggio",
-        es: "mayo"
+        es: "mayo",
+        fr: "peut",
+        de: "kann",
+        ru: "май",
+        zh: "可能"
     },
     "june": {
         en: "june",
         it: "giugno",
-        es: "junio"
+        es: "junio",
+        fr: "juin",
+        de: "juni",
+        ru: "июнь",
+        zh: "六月"
     },
     "july": {
         en: "july",
         it: "luglio",
-        es: "julio"
+        es: "julio",
+        fr: "juillet",
+        de: "juli",
+        ru: "июль",
+        zh: "七月"
     },
     "august": {
         en: "august",
         it: "agosto",
-        es: "agosto"
+        es: "agosto",
+        fr: "août",
+        de: "august",
+        ru: "август",
+        zh: "八月"
     },
     "september": {
         en: "september",
         it: "settembre",
-        es: "septiembre"
+        es: "septiembre",
+        fr: "septembre",
+        de: "september",
+        ru: "сентябрь",
+        zh: "九月"
     },
     "october": {
         en: "october",
         it: "ottobre",
-        es: "octubre"
+        es: "octubre",
+        fr: "octobre",
+        de: "oktober",
+        ru: "октябрь",
+        zh: "十月"
     },
     "november": {
         en: "november",
         it: "novembre",
-        es: "noviembre"
+        es: "noviembre",
+        fr: "novembre",
+        de: "november",
+        ru: "ноябрь",
+        zh: "十一月"
     },
     "december": {
         en: "december",
         it: "dicembre",
-        es: "diciembre"
+        es: "diciembre",
+        fr: "décembre",
+        de: "dezember",
+        ru: "Декабрь",
+        zh: "十二月"
     },
     "FILTER BY": {
         en: "FILTER BY",
         it: "FILTRA PER",
-        es: "FILTRADO POR"
+        es: "FILTRADO POR",
+        fr: "FILTRER PAR",
+        de: "FILTERN NACH",
+        ru: "СОРТИРОВАТЬ ПО",
+        zh: "过滤"
     },
     "search": {
         en: "Search",
         it: "Cerca",
-        es: "ajustes"
+        es: "Buscar",
+        fr: "Chercher",
+        de: "Suche",
+        ru: "Поиск",
+        zh: "搜索"
     },
     searchfield: { 
         en: "Search Bookings",
         it: "Cerca Prenotazioni",
-        es: "ajustes"
+        es: "Buscar Reservas",
+        fr: "Rechercher Des Réservations",
+        de: "Buchungen Suchen",
+        ru: "Поиск бронирований",
+        zh: "搜索预订"
       },
     "all channels": {
         en: "ALL CHANNELS",
         it: "TUTTI I CANALI",
-        es: "ajustes"
+        es: "TODOS LOS CANALES",
+        fr: "TOUTES LES CHAÎNES",
+        de: "ALLE KANÄLE",
+        ru: "ВСЕ КАНАЛЫ",
+        zh: "所有频道"
     },
     "from": {
         en: "from",
         it: "da",
-        es: "ajustes"
+        es: "de",
+        fr: "de",
+        de: "aus",
+        ru: "из",
+        zh: "从"
     },
     "to": {
         en: "to",
         it: "a",
-        es: "ajustes"
+        es: "a",
+        fr: "à",
+        de: "zu",
+        ru: "к",
+        zh: "至"
     },
     "confirmed booking": {
         en: "confirmed booking",
         it: "prenotazione effettuata",
-        es: "ajustes"
+        es: "reserva hecha",
+        fr: "réservation confirmée",
+        de: "bestätigte buchung",
+        ru: "подтвержденное бронирование",
+        zh: "确认预订"
     },
     "arrival": {
         en: "arrival",
         it: "arrivo",
-        es: "ajustes"
+        es: "llegada",
+        fr: "arrivées",
+        de: "ankunft",
+        ru: "прибытие",
+        zh: "到达"
     },
     "departure": {
         en: "departure",
         it: "partenza",
-        es: "ajustes"
+        es: "partida",
+        fr: "départ",
+        de: "abfahrt",
+        ru: "Вылет из",
+        zh: "离开"
     },
     "existing": {
         en: "existing",
         it: "presenza",
-        es: "ajustes"
+        es: "presencia",
+        fr: "présence",
+        de: "gegenwart",
+        ru: "существующий",
+        zh: "现存的"
     },
     "deleted": {
         en: "Deleted",
         it: "Eliminate",
-        es: "ajustes"
+        es: "Eliminado",
+        fr: "Supprimé",
+        de: "Gelöscht",
+        ru: "удален",
+        zh: "已删除"
     }
   }
