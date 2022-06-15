@@ -70,7 +70,8 @@ function Logout() {
 // ------ prenotazione page --------------------------------------------------------------------------------------------------------------
 // variabili
 var pagenumber=1,maxpages; //page prenotazioni
-const arraygiorni = ["january","february","march","april","may","june","july","august","september","october","november","december"];
+const arraymonth = ["january","february","march","april","may","june","july","august","september","october","november","december"];
+const arrayndays = [  31,       28,       31,       30,    31,    30,   31,     31,       30,       31,         30,         31];
 
 //AJAX per l'elenco delle prenotazioni
 function elencoPrenotazioni() {
@@ -163,12 +164,13 @@ function previousPage() {
 //20220525 anno mese giorno
 function stampaData(stringadata) {return stringadata.slice(6, 8)+'/'+stringadata.slice(4, 6)+'/'+stringadata.slice(2, 4);} //stampa 23/01/2022
 function stampaDataNoAnno(stringadata) {return stringadata.slice(6, 9)+'/'+stringadata.slice(4, 6)} //stampa 23/01
-function stampaGiorno(stringadata) {return arraygiorni[parseInt(stringadata.slice(4, 6))-1]} //stampa tipo gennaio dato 01 (stringa)
+function stampaGiorno(stringadata) {return arraymonth[parseInt(stringadata.slice(4, 6))-1]} //stampa tipo gennaio dato 01 (stringa)
 
 
 
 // ------ disponibilita page --------------------------------------------------------------------------------------------------------------
 let gruppi = [];
+const data = new Date(); //data usata nel calendario
 
 //AJAX per l'elenco dei gruppi creati
 function elencoGruppi() {
@@ -194,8 +196,59 @@ function elencoGruppi() {
 }
 
 
-function costruisciGriglia() {
+function costruisciCalendario() {
+  let giorni = "";
+  let mese = data.getMonth();
+  document.getElementById('mese').innerHTML = arraymonth[mese];
+  let anno = data.getFullYear();
+  document.getElementById('anno').innerHTML = anno;
+  for (let index = 0; index < data.getUTCDay(); index++) {
+    giorni += '<li></li>';
+  }
+  let ndays = arrayndays[mese];
+  if(mese==1) //febbraio
+  {
+    if(anno%400==0 || anno%4==0 && !(anno%100==0))
+    {
+      ndays = 29;
+    }
+  }
 
+  for (let index = 1; index <= ndays; index++) {
+    giorni += '<li>'+index+'</li>';
+  }
+  document.getElementById('days').innerHTML = giorni;
+}
+function previousMonth() {
+  let month = data.getMonth(); 
+  if(month==0)
+  {
+    let year = data.getFullYear(); 
+    data.setFullYear(year-1);
+    data.setMonth(11);
+    document.getElementById('anno').innerHTML = data.getFullYear();
+  }
+  else
+  {
+    data.setMonth(month-1);
+  }
+  costruisciCalendario();
+}
+function nextMonth() {
+  let month = data.getMonth(); 
+  if(month==11)
+  {
+    let year = data.getFullYear(); 
+    data.setFullYear(year+1);
+    data.setMonth(0);
+    document.getElementById('anno').innerHTML = data.getFullYear();
+  }
+  else
+  {
+    data.setMonth(month+1);
+  }
+  document.getElementById('mese').innerHTML = arraymonth[data.getMonth()];
+  costruisciCalendario();
 }
 
 
@@ -251,6 +304,7 @@ function viewDisponibilita() { //pagina tutta a sinistra (la chiave)
   document.getElementById("navbar_disponibilita").classList.add("active");
   document.getElementById("disponibilita").style.display = '';
   
+  costruisciCalendario();
   elencoGruppi();
 }
 

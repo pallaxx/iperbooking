@@ -194,11 +194,46 @@
 
         <!-- DISPONIBILITA -->
         <div id="disponibilita" class="page" style="display: none;">
-            <div class="container-fluid">
+            <div class="header">
+                <div class="container-fluid">
+                    <div class="arrow-left" onclick="previousMonth()">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg> 
+                    </div>
+                    <div class="data">
+                        <div class="mese">
+                            <span class="trn" id="mese"></span>
+                        </div>
+                        <div class="anno">
+                            <span id="anno"></span>
+                        </div>
+                    </div>
+                    <div class="arrow-right" onclick="nextMonth()">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
+                    </div>
+                </div> 
+                <div class="container-fluid">
+                    <div class="gruppo">
+                        <div class="input">
 
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="container-fluid">
-
+                <div class="calendar">
+                    <div class="weekdays">
+                        <li class="trn">s</li>
+                        <li class="trn">m</li>
+                        <li class="trn">t</li>
+                        <li class="trn">w</li>
+                        <li class="trn">t</li>
+                        <li class="trn">f</li>
+                        <li class="trn">s</li>
+                    </div>
+                    <div id="days" class="days">
+    
+                    </div> 
+                </div>
             </div>
         </div>
 

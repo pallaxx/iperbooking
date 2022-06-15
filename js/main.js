@@ -3,7 +3,7 @@ var site = 'https://backoffice.iperbooking.cristiano/';
 // LINGUA
 const staticheight = 24;
 let nowheight=0, multipleindex=0;
-const arraylanguage = ['en','it','fr','es','de'];
+const arraylanguage = ['en','it','es','fr','de','ru','zh'];
 const langcookiename="language";
 var translator = $('body').translate({lang: "en", t: dict}); //initialize dictionary in English
 loadLang();
