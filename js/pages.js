@@ -371,6 +371,20 @@ function viewCalendar() {
   grigliaElenco();
 }
 
+function selectTrattamento(trattamento) {
+  //0 all inclusive, 1 full board, 2 half board, 3 bed and breakfast , 4 room only, 5 apartment
+  //0 all inclusive, 1 pensione completa, 2 mezza pensione, 3 pernottamento e colazione , 4 pernottamento, 5 appartamento
+  var flag = false;
+  if(!document.getElementById(trattamento).classList.contains('active'))
+    flag=true;
+  for (let index = 0; index < 6; index++)
+    try {document.getElementById('trattamento_'+index).classList.remove('active'); } catch (error) {} 
+  if(flag)
+    document.getElementById(trattamento).classList.add('active');
+
+  grigliaElenco();
+}
+
 function richiediDisponibilita() {
 
 }

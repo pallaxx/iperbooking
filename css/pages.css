@@ -319,7 +319,6 @@
 .fullscreen .page#disponibilita .header {
     width: 100%;
     font-size: 20px;
-    margin-top: 20px;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -329,6 +328,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    flex-direction: initial;
 }
 .fullscreen .page#disponibilita .header .container-fluid .arrow-left{
     align-items: center;
@@ -373,14 +373,21 @@
     align-items: center;
 }
 
-.fullscreen .page#disponibilita .header .container-fluid .gruppo {
+.fullscreen .page#disponibilita .header .container-fluid.filter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+}
+.fullscreen .page#disponibilita .header .container-fluid .gruppi {
     width: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 20px;
 }
-.fullscreen .page#disponibilita .header .container-fluid .gruppo .input{
+.fullscreen .page#disponibilita .header .container-fluid .gruppi{
     width: 100%;
     height: 8vh;
     justify-content: center;
@@ -388,7 +395,7 @@
     font-size: 20px;
     display: flex;
 }
-.fullscreen .page#disponibilita .header .container-fluid .gruppo .input select{
+.fullscreen .page#disponibilita .header .container-fluid .gruppi select{
     justify-content: center;
     align-items: center;
     font-size: 20px;
@@ -399,11 +406,38 @@
     border: 0;
 }
 
+.fullscreen .page#disponibilita .header .container-fluid .trattamenti{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.fullscreen .page#disponibilita .header .container-fluid .trattamento{
+    border-radius: 50px;
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    background-color: #fff;
+    transition: 0s all ease;
+}.fullscreen .page#disponibilita .header .container-fluid .trattamento span{
+    font-size: 16px;
+}.fullscreen .page#disponibilita .header .container-fluid .trattamento.active{
+    background-color: var(--selected);
+    color: #fff;
+}
+
 .fullscreen .page#disponibilita .container-fluid {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 350px;
+    margin: 0;
+    flex-direction: column;
 }
 .fullscreen .page#disponibilita .container-fluid .calendar{
     border: 1px solid black;
@@ -459,8 +493,6 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 350px;
-    margin-top: 15px;
 }
 .fullscreen .page#disponibilita .container-fluid .hider svg{
     width: 60px;
@@ -470,12 +502,21 @@
 .fullscreen .page#disponibilita .container-fluid#adds .header {
     position: sticky;
     margin: 0;
+    top: 0;
+    z-index: 500;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
-.fullscreen .page#disponibilita .container-fluid .header .col{
+.fullscreen .page#disponibilita .container-fluid#adds .header .riga{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: white;
+}
+.fullscreen .page#disponibilita .container-fluid#adds .header .col{
     display: flex;
     flex-direction: column;
     margin: 2px;
@@ -483,14 +524,85 @@
     border: 1px solid black;
     font-size: 16px;
 }
-.fullscreen .page#disponibilita .container-fluid .header .col .day{
+.fullscreen .page#disponibilita .container-fluid#adds .header .col .day{
     font-size: 14px;
 }
-.fullscreen .page#disponibilita .container-fluid .header .col .weekday{
+.fullscreen .page#disponibilita .container-fluid#adds .header .col .weekday{
     text-align: center;
     justify-content: center;
     align-items: center;
 }
+
+.fullscreen .page#disponibilita .container-fluid#adds .elenco {
+    margin-bottom: 10vh;
+}
+.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo {
+    margin: 20px;
+}
+.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .header {
+    position: initial;
+    background: none;
+}.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .header .col{
+    width: 47.14px;
+    height: 55px;
+}
+
+.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .riga {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .riga .col{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 2px;
+    padding: 4px;
+    border: 1px solid black;
+    font-size: 16px;
+    width: 47.14px;
+    height: 55px;
+    justify-content: center;
+    align-items: center;
+}
+.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .riga.disponibilita .col{
+    background-color: #3DD25A;
+    background-color: #F27931;
+    background-color: #C82A36;
+    color: #fff;
+}.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .riga.trattamenti .col{
+    background-color: white;
+}
+.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .riga.trattamenti .col svg{
+    width: 34px;
+    margin-right: 2px;
+    height: auto;
+}
+
+.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .riga.disponibilita .col .alza{
+    margin-bottom: 15px;
+}
+.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .riga.disponibilita .col .vendute{
+    font-size: 14px;
+    margin: 0;
+    background-color: #F9D995;
+    width: 90%;
+    text-align: center;
+    color: black;
+    height: 2.5vh;
+    position: absolute;
+    bottom: 2px;
+    display: flex;
+    justify-content: center;
+}
+.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .riga.disponibilita .col .vendute span{
+    position: absolute;
+    bottom: 19px;
+    height: 1px;
+}
+
+
 
 /* SETTINGS */
 .fullscreen .page#settings .header {
