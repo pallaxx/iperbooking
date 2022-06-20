@@ -195,7 +195,7 @@
         <!-- DISPONIBILITA -->
         <div id="disponibilita" class="page" style="display: none;">
             <div class="header">
-                <div class="container-fluid">
+                <div class="container-fluid" id="header">
                     <div class="arrow-left" onclick="previousMonth()">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg> 
                     </div>
@@ -214,15 +214,17 @@
                 <div class="container-fluid">
                     <div class="gruppo">
                         <div class="input">
+                            <select name="" id="calendar_gruppi" onchange="grigliaElenco()">
 
+                            </select>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="container-fluid">
-                <div class="calendar">
+                <div class="calendar" id="calendar">
                     <div class="weekdays">
-                        <li class="trn">s</li>
+                        <li class="trn" style="color: red;">s</li>
                         <li class="trn">m</li>
                         <li class="trn">t</li>
                         <li class="trn">w</li>
@@ -233,6 +235,53 @@
                     <div id="days" class="days">
     
                     </div> 
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="hider" id="calendar-hider" onclick="hideCalendar()">
+                    <svg id="hider-iconup" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-compact-up" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M7.776 5.553a.5.5 0 0 1 .448 0l6 3a.5.5 0 1 1-.448.894L8 6.56 2.224 9.447a.5.5 0 1 1-.448-.894l6-3z"/>
+                    </svg>
+                    <svg id="hider-icondown" style="display: none;" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="container-fluid" id="adds" style="display: none;">
+                <div class="header">
+                    <div class="col">
+                        <span class="day">01/07</span>
+                        <span class="weekday" style="color: #F00;">S</span>
+                    </div>
+                    <div class="col">
+                        <span class="day">02/07</span>
+                        <span class="weekday">M</span>
+                    </div>
+                    <div class="col">
+                        <span class="day">03/07</span>
+                        <span class="weekday">T</span>
+                    </div>
+                    <div class="col">
+                        <span class="day">04/07</span>
+                        <span class="weekday">W</span>
+                    </div>
+                    <div class="col">
+                        <span class="day">05/07</span>
+                        <span class="weekday">T</span>
+                    </div>
+                    <div class="col">
+                        <span class="day">06/07</span>
+                        <span class="weekday">F</span>
+                    </div>
+                    <div class="col">
+                        <span class="day">07/07</span>
+                        <span class="weekday">S</span>
+                    </div>
+                </div>
+                <div class="elenco">
+                    <div class="row">
+
+                    </div>
                 </div>
             </div>
         </div>

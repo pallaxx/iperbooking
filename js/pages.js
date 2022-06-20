@@ -171,6 +171,10 @@ function stampaGiorno(stringadata) {return arraymonth[parseInt(stringadata.slice
 // ------ disponibilita page --------------------------------------------------------------------------------------------------------------
 let gruppi = [];
 const data = new Date(); //data usata nel calendario
+let ndays;
+let data1 = "";
+let data2 = "";
+
 
 //AJAX per l'elenco dei gruppi creati
 function elencoGruppi() {
@@ -197,15 +201,24 @@ function elencoGruppi() {
 
 
 function costruisciCalendario() {
+  //GRUPPI
+  let html='<option value="all">all groups</option>';
+  html+='<option value="0">gruppo prova</option>';
+  for (let index = 0; index < gruppi.length; index++) {
+    html += '<option value="'+gruppi[index].id+'">'+gruppi[index].name+'</option>';
+  }
+  document.getElementById('calendar_gruppi').innerHTML = html;
+
   let giorni = "";
   let mese = data.getMonth();
   document.getElementById('mese').innerHTML = arraymonth[mese];
+  document.getElementById('mese').setAttribute('data-trn-key', arraymonth[mese]);
   let anno = data.getFullYear();
   document.getElementById('anno').innerHTML = anno;
   for (let index = 0; index < data.getUTCDay(); index++) {
     giorni += '<li></li>';
   }
-  let ndays = arrayndays[mese];
+  ndays = arrayndays[mese];
   if(mese==1) //febbraio
   {
     if(anno%400==0 || anno%4==0 && !(anno%100==0))
@@ -215,9 +228,17 @@ function costruisciCalendario() {
   }
 
   for (let index = 1; index <= ndays; index++) {
-    giorni += '<li>'+index+'</li>';
+    let id = index+'/'+mese+'/'+anno;
+    if(id == data1 || id == data2)
+    {
+      giorni += '<li id="'+id+'" class="active" onclick="selectData(this.id)">'+index+'</li>';
+    }
+    else
+      giorni += '<li id="'+id+'" onclick="selectData(this.id)">'+index+'</li>';
   }
   document.getElementById('days').innerHTML = giorni;
+  loadLang();
+  striscione();
 }
 function previousMonth() {
   let month = data.getMonth(); 
@@ -249,6 +270,116 @@ function nextMonth() {
   }
   document.getElementById('mese').innerHTML = arraymonth[data.getMonth()];
   costruisciCalendario();
+}
+
+function selectData(id) {
+  if(document.getElementById(id).classList.contains('active'))
+  {
+    document.getElementById(id).classList.remove('active');
+    if(id == data1)
+      data1 = "";
+    else
+      data2 = "";
+  }
+  else
+  {
+    if(data1 == "")
+      data1 = id;
+    else if(data2 == "")
+      data2 = id;
+    else
+    {
+      try { document.getElementById(data2).classList.remove('active'); } catch (error) {}
+      data2 = id;
+    }
+    document.getElementById(id).classList.add('active');
+  }
+  striscione();
+}
+function striscione() {
+  clearStriscione();
+  if(data1 != "" && data2!= "")
+  {
+    let datamax = new Date(scomponiData(data1));
+    let datamin = new Date(scomponiData(data2));
+    if(datamax<datamin)
+    {
+      const tmp = new Date(datamin);
+      datamin = datamax;
+      datamax = tmp; 
+    }
+
+    for (datamin.setDate(datamin.getDate() + 1);datamin<datamax;datamin.setDate(datamin.getDate() + 1)) {
+      try { document.getElementById(datamin.getDate()+'/'+datamin.getMonth()+'/'+datamin.getFullYear()).classList.add('striscione'); } catch (error) {
+        if(data.getMonth()<=datamax.getMonth())
+        {
+          if(data.getMonth()!=datamin.getMonth()-1)
+          {
+            datamin.setDate(1);
+            datamin.setMonth(data.getMonth());
+            datamin.setFullYear(data.getFullYear());
+            document.getElementById(datamin.getDate()+'/'+datamin.getMonth()+'/'+datamin.getFullYear()).classList.add('striscione');
+          }
+          else
+          {
+            break;
+          }
+        }
+      }
+    }
+    
+  }
+}
+function clearStriscione() {
+  let mese = data.getMonth();
+  let year = data.getFullYear();
+    for (let index = 1; index <= ndays; index++) {
+    try { document.getElementById(index+'/'+mese+'/'+year).classList.remove('striscione'); } catch (error) {}
+  }
+}
+
+function scomponiData(data) {
+  const datatmp = new Date();
+  let splitted = data.split('/');
+  datatmp.setFullYear(splitted[2]);
+  datatmp.setMonth(splitted[1]);
+  datatmp.setDate(splitted[0]);
+  return datatmp;
+}
+
+function hideCalendar() {
+  document.getElementById('header').style.display = 'none';
+  document.getElementById('calendar').style.display = 'none';
+  document.getElementById('hider-iconup').style.display = 'none';
+  document.getElementById('hider-icondown').style.display = '';
+  document.getElementById('calendar-hider').onclick = viewCalendar;
+  document.getElementById('adds').style.display = '';
+
+  if(document.getElementById('calendar_gruppi').value == "all")
+    document.getElementById('search_groups').style.display = '';
+  else
+    document.getElementById('search_groups').style.display = 'none';
+}
+
+function viewCalendar() {
+  document.getElementById('header').style.display = '';
+  document.getElementById('calendar').style.display = '';
+  document.getElementById('hider-iconup').style.display = '';
+  document.getElementById('hider-icondown').style.display = 'none';
+  document.getElementById('calendar-hider').onclick = hideCalendar;
+  document.getElementById('adds').style.display = 'none';
+  grigliaElenco();
+}
+
+function richiediDisponibilita() {
+
+}
+
+function grigliaElenco() {
+  if(document.getElementById('calendar_gruppi').value == "all")
+  {
+    
+  }
 }
 
 

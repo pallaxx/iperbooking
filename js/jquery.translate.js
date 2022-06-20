@@ -253,7 +253,7 @@ var dict = {
     },
     "july": {
         en: "July",
-        it: "Juglio",
+        it: "Luglio",
         es: "Julio",
         fr: "Juillet",
         de: "Juli",
