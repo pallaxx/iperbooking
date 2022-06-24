@@ -85,43 +85,43 @@
 
 /* PRENOTAZIONI */
 /* SEARCH */
-.fullscreen .page#prenotazioni .container-fluid .input-group{
+.fullscreen .page#bookings .container-fluid .input-group{
     border: 2px solid #000;
     border-radius: 8px;
     transition:all 0.3s ease;
 }
-.fullscreen .page#prenotazioni .container-fluid .input-group .placeholder{
+.fullscreen .page#bookings .container-fluid .input-group .placeholder{
     position: absolute;
     padding: 4px 8px;
     z-index: 200;
     background-color: rgba(0, 0, 0, 0);
 }
-.fullscreen .page#prenotazioni .container-fluid .input-group .placeholder span{
+.fullscreen .page#bookings .container-fluid .input-group .placeholder span{
     position: relative;
     background-color: rgba(0, 0, 0, 0);
 }
-.fullscreen .page#prenotazioni .container-fluid .input-group:focus-within{
+.fullscreen .page#bookings .container-fluid .input-group:focus-within{
     border: 2px solid var(--primary);
     padding: 4px 8px;
 }
-.fullscreen .page#prenotazioni .container-fluid .input-group .input-search{
+.fullscreen .page#bookings .container-fluid .input-group .input-search{
     border: 0;
 }
-.fullscreen .page#prenotazioni .container-fluid .input-group .input-group-text{
+.fullscreen .page#bookings .container-fluid .input-group .input-group-text{
     border: 0;
 }
 
 /* FILTER */
-.fullscreen #filter {
+.fullscreen #bookings_filter {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
 }
-.fullscreen #filter .vuoto {
+.fullscreen #bookings_filter .vuoto {
     height: 40vh;
-} .fullscreen #filter .container-fluid {
+} .fullscreen #bookings_filter .container-fluid {
     position: absolute;
     height: 60vh;
     z-index: 5001;
@@ -129,7 +129,7 @@
     border-top: 2px solid black;
     background-color: #fff;
 }
-.fullscreen #filter .container-fluid span {
+.fullscreen #bookings_filter .container-fluid span {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -137,16 +137,16 @@
     font-size: 32px;
     padding: 20px;
 }
-.fullscreen #filter .container-fluid .field {
+.fullscreen #bookings_filter .container-fluid .field {
     margin-top: 30px;
 }
 
 /* CANALI */
-.fullscreen #filter .container-fluid .field.canali {
+.fullscreen #bookings_filter .container-fluid .field.canali {
     width: 100%;
     margin-top: 0;
 }
-.fullscreen #filter .container-fluid .field.canali select{
+.fullscreen #bookings_filter .container-fluid .field.canali select{
     width: 100%;
     text-align: center;
     font-size: 20px;
@@ -155,10 +155,10 @@
 }
 
 /* DATE */
-.fullscreen #filter .container-fluid .field.date {
+.fullscreen #bookings_filter .container-fluid .field.date {
     width: 100%;
 }
-.fullscreen #filter .container-fluid .field.date span {
+.fullscreen #bookings_filter .container-fluid .field.date span {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -166,17 +166,17 @@
     padding: 10px;
     font-size: 18px;
 }
-.fullscreen #filter .container-fluid .field.date input{
+.fullscreen #bookings_filter .container-fluid .field.date input{
     width: 100%;
     text-align: center;
     border: 0;
 }
 
 /* CATEGORIE */
-.fullscreen #filter .container-fluid .field.filtradata {
+.fullscreen #bookings_filter .container-fluid .field.filtradata {
     width: 100%;
 }
-.fullscreen #filter .container-fluid .field.filtradata select{
+.fullscreen #bookings_filter .container-fluid .field.filtradata select{
     width: 100%;
     text-align: center;
     font-size: 20px;
@@ -184,10 +184,10 @@
     border: 0;
 }
 /* ELIMINATE */
-.fullscreen #filter .container-fluid .field.filtraeliminate label{
+.fullscreen #bookings_filter .container-fluid .field.filtraeliminate label{
     font-size: 32px;
 }
-.fullscreen #filter .container-fluid .field.filtraeliminate #filter_filtraeliminate{
+.fullscreen #bookings_filter .container-fluid .field.filtraeliminate #bookings_filter-deleted{
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -198,7 +198,7 @@
 }
 
 /* ELENCO */
-.fullscreen .page#prenotazioni .container-fluid#elenco{
+.fullscreen .page#bookings .container-fluid#bookings_list{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -206,28 +206,28 @@
     padding: 0;
 }
 /* LOADING */
-.fullscreen .page#prenotazioni #elenco .loading{
+.fullscreen .page#bookings #bookings_list .loading{
     justify-content: center;
     align-items: center;
     margin-top: 160px;
 }
 /* IMPOSTAZIONI DI OGNI PRENOTAZIONE */
-.fullscreen .page#prenotazioni #elenco .prenotazione{
+.fullscreen .page#bookings #bookings_list .prenotazione{
     width: 100%;
     max-width: 400px;
     position: relative;
     height: fit-content;
     border-top: 1px solid #000;
 }
-.fullscreen .page#prenotazioni #elenco .prenotazione.eliminata {
+.fullscreen .page#bookings #bookings_list .prenotazione.eliminata {
     color: #F00;
     text-decoration: line-through;
 }
-.fullscreen .page#prenotazioni #elenco .prenotazione:nth-last-child(2){
+.fullscreen .page#bookings #bookings_list .prenotazione:nth-last-child(2){
     border-bottom: 1px solid #000;
 }
 /* DATA PRENOTAZIONE */
-.fullscreen .page#prenotazioni #elenco .prenotazione .dataprenotazione{
+.fullscreen .page#bookings #bookings_list .prenotazione .dataprenotazione{
     position: relative;
     top: 1vh;
     width: 100px;
@@ -235,7 +235,7 @@
     font-size: 11px;
 }
 /* CLIENTE */
-.fullscreen .page#prenotazioni #elenco .prenotazione .cliente{
+.fullscreen .page#bookings #bookings_list .prenotazione .cliente{
     position: relative;
     top: 2vh;
     left: 0.5em;
@@ -244,7 +244,7 @@
     font-size: 16px;
 }
 /* CANALE */
-.fullscreen .page#prenotazioni #elenco .prenotazione .canale{
+.fullscreen .page#bookings #bookings_list .prenotazione .canale{
     position: relative;
     top: 100%;
     left: 4em;
@@ -253,99 +253,99 @@
 }
 
 /* STAGIONE E PERIODO */
-.fullscreen .page#prenotazioni #elenco .prenotazione .stagione_periodo{
+.fullscreen .page#bookings #bookings_list .prenotazione .stagione_periodo{
     position: absolute;
     top: 1vh;
     right: .5em;
 }
 /* STAGIONE */
-.fullscreen .page#prenotazioni #elenco .prenotazione .stagione_periodo .stagione-group{
+.fullscreen .page#bookings #bookings_list .prenotazione .stagione_periodo .stagione-group{
     position: relative;
     font-size: 14px;
     text-align: center;
 }
 /* PERIODO */
-.fullscreen .page#prenotazioni #elenco .prenotazione .stagione_periodo .periodo-group {
+.fullscreen .page#bookings #bookings_list .prenotazione .stagione_periodo .periodo-group {
     position: relative;
     font-size: 12px;
     text-align: center;
 }
 
 /* CAMERE E NOTTI */
-.fullscreen .page#prenotazioni #elenco .prenotazione .camere_notti{
+.fullscreen .page#bookings #bookings_list .prenotazione .camere_notti{
     position: absolute;
     top: 8vh;
     right: 1em;
 }
 /* CAMERE */
-.fullscreen .page#prenotazioni #elenco .prenotazione .camere_notti .camere-group{
+.fullscreen .page#bookings #bookings_list .prenotazione .camere_notti .camere-group{
     position: relative;
     margin-right: .25em;
     display: inline-flex;
 }
-.fullscreen .page#prenotazioni #elenco .prenotazione .camere_notti .camere-group .icona{width: 25px;} 
-.fullscreen .page#prenotazioni #elenco .prenotazione .camere_notti .camere-group .testo{margin: 3px;font-size: 16px;}
+.fullscreen .page#bookings #bookings_list .prenotazione .camere_notti .camere-group .icona{width: 25px;} 
+.fullscreen .page#bookings #bookings_list .prenotazione .camere_notti .camere-group .testo{margin: 3px;font-size: 16px;}
 /* NOTTI */
-.fullscreen .page#prenotazioni #elenco .prenotazione .camere_notti .notti-group {
+.fullscreen .page#bookings #bookings_list .prenotazione .camere_notti .notti-group {
     position: relative;
     margin-left: .25em;
     display: inline-flex;
 }
-.fullscreen .page#prenotazioni #elenco .prenotazione .camere_notti .notti-group .icona{width: 25px;} 
-.fullscreen .page#prenotazioni #elenco .prenotazione .camere_notti .notti-group .testo{margin: 3px;font-size: 16px;}
+.fullscreen .page#bookings #bookings_list .prenotazione .camere_notti .notti-group .icona{width: 25px;} 
+.fullscreen .page#bookings #bookings_list .prenotazione .camere_notti .notti-group .testo{margin: 3px;font-size: 16px;}
 
 /* INDICE */
-.fullscreen .page#prenotazioni #elenco .indice {
+.fullscreen .page#bookings #bookings_list .indice {
     margin-top: 20px;
     margin-bottom: 2px;
     display: inline-flex;
 }
-.fullscreen .page#prenotazioni #elenco .indice .arrow-left {
+.fullscreen .page#bookings #bookings_list .indice .arrow-left {
     width: 20px;
     margin-right: 1em;
 }
-.fullscreen .page#prenotazioni #elenco .indice .number {
+.fullscreen .page#bookings #bookings_list .indice .number {
     font-size: 18px;
 }
-.fullscreen .page#prenotazioni #elenco .arrow-right {
+.fullscreen .page#bookings #bookings_list .arrow-right {
     width: 20px;
     margin-left: 1em;
 }
 
-/* DISPONIBILITA */
-.fullscreen .page#disponibilita {
-    height: 100%;
+/* Availability */
+.fullscreen .page#availability {
+
 }
-.fullscreen .page#disponibilita .header {
+.fullscreen .page#availability .header {
     width: 100%;
     font-size: 20px;
     padding: 0;
     display: flex;
     flex-direction: column;
 }
-.fullscreen .page#disponibilita .header .container-fluid {
+.fullscreen .page#availability .header .container-fluid {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
     flex-direction: initial;
 }
-.fullscreen .page#disponibilita .header .container-fluid .arrow-left{
+.fullscreen .page#availability .header .container-fluid .arrow-left{
     align-items: center;
     margin-right: 30px;
 }
-.fullscreen .page#disponibilita .header .container-fluid .arrow-right{
+.fullscreen .page#availability .header .container-fluid .arrow-right{
     align-items: center;
     margin-left: 30px;
 }
-.fullscreen .page#disponibilita .header .container-fluid svg{
+.fullscreen .page#availability .header .container-fluid svg{
     width: 20px;
     height: 20px;
 }
-.fullscreen .page#disponibilita .header .container-fluid span.trn{
+.fullscreen .page#availability .header .container-fluid span.trn{
     font-size: 40px;
 }
-.fullscreen .page#disponibilita .header .container-fluid .data {
+.fullscreen .page#availability .header .container-fluid .data {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -353,7 +353,7 @@
     border: 1px solid black;
     border-radius: 8px;
 }
-.fullscreen .page#disponibilita .header .container-fluid .data .mese {
+.fullscreen .page#availability .header .container-fluid .data .mese {
     position: relative;
     width: 110px;
     height: 5vh;
@@ -361,10 +361,10 @@
     justify-content: center;
     align-items: center;
 }
-.fullscreen .page#disponibilita .header .container-fluid .data .mese span.trn{
+.fullscreen .page#availability .header .container-fluid .data .mese span.trn{
     font-size: 20px;
 }
-.fullscreen .page#disponibilita .header .data .anno {
+.fullscreen .page#availability .header .data .anno {
     position: relative;
     width: 60px;
     height: 5vh;
@@ -373,21 +373,21 @@
     align-items: center;
 }
 
-.fullscreen .page#disponibilita .header .container-fluid.filter{
+.fullscreen .page#availability .header .container-fluid.filter{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     margin: 0;
 }
-.fullscreen .page#disponibilita .header .container-fluid .gruppi {
+.fullscreen .page#availability .header .container-fluid .gruppi {
     width: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 20px;
 }
-.fullscreen .page#disponibilita .header .container-fluid .gruppi{
+.fullscreen .page#availability .header .container-fluid .gruppi{
     width: 100%;
     height: 8vh;
     justify-content: center;
@@ -395,7 +395,7 @@
     font-size: 20px;
     display: flex;
 }
-.fullscreen .page#disponibilita .header .container-fluid .gruppi select{
+.fullscreen .page#availability .header .container-fluid .gruppi select{
     justify-content: center;
     align-items: center;
     font-size: 20px;
@@ -406,14 +406,14 @@
     border: 0;
 }
 
-.fullscreen .page#disponibilita .header .container-fluid .trattamenti{
+.fullscreen .page#availability .header .container-fluid .trattamenti{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
 }
 
-.fullscreen .page#disponibilita .header .container-fluid .trattamento{
+.fullscreen .page#availability .header .container-fluid .trattamento{
     border-radius: 50px;
     border: 1px solid black;
     margin: 5px;
@@ -425,81 +425,142 @@
     height: 45px;
     background-color: #fff;
     transition: 0s all ease;
-}.fullscreen .page#disponibilita .header .container-fluid .trattamento span{
+}.fullscreen .page#availability .header .container-fluid .trattamento span{
     font-size: 16px;
-}.fullscreen .page#disponibilita .header .container-fluid .trattamento.active{
+}.fullscreen .page#availability .header .container-fluid .trattamento.active{
     background-color: var(--selected);
     color: #fff;
 }
 
-.fullscreen .page#disponibilita .container-fluid {
+.fullscreen .page#availability .container-fluid {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0;
     flex-direction: column;
 }
-.fullscreen .page#disponibilita .container-fluid .calendar{
+.fullscreen .page#availability .container-fluid.header {
+    width: 100%;
+    font-size: 20px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+.fullscreen .page#availability .container-fluid.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    flex-direction: initial;
+}
+.fullscreen .page#availability .container-fluid.header .arrow-left{
+    align-items: center;
+    margin-right: 30px;
+}
+.fullscreen .page#availability .container-fluid.header .arrow-right{
+    align-items: center;
+    margin-left: 30px;
+}
+.fullscreen .page#availability .container-fluid.header svg{
+    width: 20px;
+    height: 20px;
+}
+.fullscreen .page#availability .container-fluid.header span.trn{
+    font-size: 40px;
+}
+.fullscreen .page#availability .container-fluid.header .data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+.fullscreen .page#availability .container-fluid.header .data .mese {
+    position: relative;
+    width: 110px;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fullscreen .page#availability .container-fluid.header .data .mese span.trn{
+    font-size: 20px;
+}
+.fullscreen .page#availability .container-fluid.header .data .anno {
+    position: relative;
+    width: 60px;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fullscreen .page#availability .container-fluid .calendar{
     border: 1px solid black;
     border-radius: 8px;
     padding: 0;
     margin: 0;
     margin-top: 20px;
+    width: 331px;
 }
-.fullscreen .page#disponibilita .container-fluid .calendar .weekdays{
+.fullscreen .page#availability .container-fluid .calendar .weekdays{
     padding: 0;
     display: inline-flex;
     width: 100%;
 }
-.fullscreen .page#disponibilita .container-fluid .calendar li{
+.fullscreen .page#availability .container-fluid .calendar li{
     display: inline-flex;
     width: 47px;
-    height: 8vh;
+    height: 56px;
     margin: 0;
     padding: 0;
     justify-content: center;
-}.fullscreen .page#disponibilita .container-fluid .calendar .weekdays li:nth-child(n){
+}.fullscreen .page#availability .container-fluid .calendar .weekdays li:nth-child(n){
     border-right: 1px solid black;
     border-bottom: 1px solid black;
     font-weight: bold;
 }
-.fullscreen .page#disponibilita .container-fluid .calendar .weekdays li:nth-child(7){
+.fullscreen .page#availability .container-fluid .calendar .weekdays li:nth-child(7){
     border-right: 0px solid black;
 }
-.fullscreen .page#disponibilita .container-fluid .calendar .days li:nth-child(n){
+.fullscreen .page#availability .container-fluid .calendar .days li:nth-child(n){
     border-right: 1px solid black;
     border-bottom: 1px solid black;
-}.fullscreen .page#disponibilita .container-fluid .calendar .days li:nth-child(7n){
+}.fullscreen .page#availability .container-fluid .calendar .days li:nth-child(7n){
     border-right: 0px solid black;
 }
-.fullscreen .page#disponibilita .container-fluid .calendar .weekdays li{
+.fullscreen .page#availability .container-fluid .calendar .weekdays li{
     justify-content: center;
     height: 3.6vh;
 }
-.fullscreen .page#disponibilita .container-fluid .calendar .days{
+.fullscreen .page#availability .container-fluid .calendar .days{
     padding: 0;
     display: inline-flex;
     width: 100%;
     flex-wrap: wrap;
 }
-.fullscreen .page#disponibilita .container-fluid .calendar .days .active{
+.fullscreen .page#availability .container-fluid .calendar .days .active{
     background-color: var(--selected);
 }
-.fullscreen .page#disponibilita .container-fluid .calendar .days .striscione{
+.fullscreen .page#availability .container-fluid .calendar .days .striscione{
     background-color: aquamarine;
 }
-.fullscreen .page#disponibilita .container-fluid .hider {
+.fullscreen .page#availability .container-fluid .hider {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-.fullscreen .page#disponibilita .container-fluid .hider svg{
+.fullscreen .page#availability .container-fluid .hider svg{
     width: 60px;
     height: 60px;
 }
 
-.fullscreen .page#disponibilita .container-fluid#adds .header {
+.fullscreen .page#availability .container-fluid {
+    margin-top: 10px;
+}
+.fullscreen .page#availability .container-fluid#availability_grid .header {
     position: sticky;
     margin: 0;
     top: 0;
@@ -509,14 +570,14 @@
     justify-content: center;
     align-items: center;
 }
-.fullscreen .page#disponibilita .container-fluid#adds .header .riga{
+.fullscreen .page#availability .container-fluid#availability_grid .header .riga{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     background: white;
 }
-.fullscreen .page#disponibilita .container-fluid#adds .header .col{
+.fullscreen .page#availability .container-fluid#availability_grid .header .col{
     display: flex;
     flex-direction: column;
     margin: 2px;
@@ -524,36 +585,36 @@
     border: 1px solid black;
     font-size: 16px;
 }
-.fullscreen .page#disponibilita .container-fluid#adds .header .col .day{
+.fullscreen .page#availability .container-fluid#availability_grid .header .col .day{
     font-size: 14px;
 }
-.fullscreen .page#disponibilita .container-fluid#adds .header .col .weekday{
+.fullscreen .page#availability .container-fluid#availability_grid .header .col .weekday{
     text-align: center;
     justify-content: center;
     align-items: center;
 }
 
-.fullscreen .page#disponibilita .container-fluid#adds .elenco {
+.fullscreen .page#availability .container-fluid#availability_grid .elenco {
     margin-bottom: 10vh;
 }
-.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo {
+.fullscreen .page#availability .container-fluid#availability_grid .elenco .gruppo {
     margin: 20px;
 }
-.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .header {
+.fullscreen .page#availability .container-fluid#availability_grid .elenco .gruppo .header {
     position: initial;
     background: none;
-}.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .header .col{
+}.fullscreen .page#availability .container-fluid#availability_grid .elenco .gruppo .header .col{
     width: 47.14px;
     height: 55px;
 }
 
-.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .riga {
+.fullscreen .page#availability .container-fluid#availability_grid .elenco .gruppo .riga {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
-.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .riga .col{
+.fullscreen .page#availability .container-fluid#availability_grid .elenco .gruppo .riga .col{
     position: relative;
     display: flex;
     flex-direction: column;
@@ -566,24 +627,24 @@
     justify-content: center;
     align-items: center;
 }
-.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .riga.disponibilita .col{
+.fullscreen .page#availability .container-fluid#availability_grid .elenco .gruppo .riga.disponibilita .col{
     background-color: #3DD25A;
     background-color: #F27931;
     background-color: #C82A36;
     color: #fff;
-}.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .riga.trattamenti .col{
+}.fullscreen .page#availability .container-fluid#availability_grid .elenco .gruppo .riga.trattamenti .col{
     background-color: white;
 }
-.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .riga.trattamenti .col svg{
+.fullscreen .page#availability .container-fluid#availability_grid .elenco .gruppo .riga.trattamenti .col svg{
     width: 34px;
     margin-right: 2px;
     height: auto;
 }
 
-.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .riga.disponibilita .col .alza{
+.fullscreen .page#availability .container-fluid#availability_grid .elenco .gruppo .riga.disponibilita .col .alza{
     margin-bottom: 15px;
 }
-.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .riga.disponibilita .col .vendute{
+.fullscreen .page#availability .container-fluid#availability_grid .elenco .gruppo .riga.disponibilita .col .vendute{
     font-size: 14px;
     margin: 0;
     background-color: #F9D995;
@@ -596,7 +657,7 @@
     display: flex;
     justify-content: center;
 }
-.fullscreen .page#disponibilita .container-fluid#adds .elenco .gruppo .riga.disponibilita .col .vendute span{
+.fullscreen .page#availability .container-fluid#availability_grid .elenco .gruppo .riga.disponibilita .col .vendute span{
     position: absolute;
     bottom: 19px;
     height: 1px;

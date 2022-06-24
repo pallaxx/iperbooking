@@ -21,7 +21,7 @@ function viewLang() {
   for (let index = 0; index < arraylanguage.length; index++) {
     tmp += "<span>"+arraylanguage[index].toUpperCase()+"</span><br>";
   }
-  document.getElementById('lang').innerHTML = tmp;
+  document.getElementById('user_lang').innerHTML = tmp;
 }
 
 function BackLang() {
@@ -49,7 +49,7 @@ function forwardLang() {
   }
 }
 function setLang() {
-  var lang = document.getElementById('lang');
+  var lang = document.getElementById('user_lang');
   nowheight=staticheight*multipleindex;
   lang.scrollTo(0,nowheight);
 }
@@ -76,13 +76,13 @@ const arrayndays = [  31,       28,       31,       30,    31,    30,   31,     
 //AJAX per l'elenco delle prenotazioni
 function elencoPrenotazioni() {
     //suddivisione di ogni filtro
-    let codice = document.getElementById("prenotazioni_search").value; //filtra per codice o nome (un po di tutto)
-    let canale = document.getElementById('filter_canali').value; // se 0 prende tutto (esempio di canali. (Agoda, Adriatico, CRM, Booking.com))
-    let data_arrivo = encodeURIComponent(document.getElementById('filter_arrivo').value); //data di arrivo
-    let data_partenza = encodeURIComponent(document.getElementById('filter_partenza').value); //data di partenza
-    let filtradataper = document.getElementById('filter_filtradata').value; //prenotazione, partenza, arrivo, presenza
+    let codice = document.getElementById("bookings_search").value; //filtra per codice o nome (un po di tutto)
+    let canale = document.getElementById('bookings_filter-channels').value; // se 0 prende tutto (esempio di canali. (Agoda, Adriatico, CRM, Booking.com))
+    let data_arrivo = encodeURIComponent(document.getElementById('bookings_filter-from').value); //data di arrivo
+    let data_partenza = encodeURIComponent(document.getElementById('bookings_filter-to').value); //data di partenza
+    let filtradataper = document.getElementById('bookings_filter-date').value; //prenotazione, partenza, arrivo, presenza
     let filtroeliminate = "";
-    if(document.getElementById("filter_filtraeliminate").checked)
+    if(document.getElementById("bookings_filter-deleted").checked)
       filtroeliminate = "&filtroEliminate=I";
     
       // inizio richiesta
@@ -144,20 +144,20 @@ function elencoPrenotazioni() {
       row += '</div>'; 
     row += '</div>'; 
     
-    document.getElementById("elenco").innerHTML = row;
+    document.getElementById("bookings_list").innerHTML = row;
   }
 }
-function redirectPrenotazione(codice) {
+function redirectBooking(codice) {
   location.href="prenotazioni.html?Id="+codice;
 }
 function nextPage() {
   pagenumber++;
-  document.getElementById("elenco").innerHTML = '<div class="loading"><img src="images/loading-page.gif" alt=""></div>';
+  document.getElementById("bookings_list").innerHTML = '<div class="loading"><img src="images/loading-page.gif" alt=""></div>';
   elencoPrenotazioni();
 }
 function previousPage() {
   pagenumber--;
-  document.getElementById("elenco").innerHTML = '<div class="loading"><img src="images/loading-page.gif" alt=""></div>';
+  document.getElementById("bookings_list").innerHTML = '<div class="loading"><img src="images/loading-page.gif" alt=""></div>';
   elencoPrenotazioni();
 }
 
@@ -170,7 +170,8 @@ function stampaGiorno(stringadata) {return arraymonth[parseInt(stringadata.slice
 
 // ------ disponibilita page --------------------------------------------------------------------------------------------------------------
 let gruppi = [];
-const data = new Date(); //data usata nel calendario
+const data = new Date(); //data periodo
+const datacalendario = new Date();//data calendario
 let ndays;
 let data1 = "";
 let data2 = "";
@@ -202,33 +203,42 @@ function elencoGruppi() {
 
 function costruisciCalendario() {
   //GRUPPI
-  let html='<option value="all">all groups</option>';
-  html+='<option value="0">gruppo prova</option>';
+  let html='<option value="all groups"/>';
+  html+='<option value="gruppo prova"/>';
   for (let index = 0; index < gruppi.length; index++) {
-    html += '<option value="'+gruppi[index].id+'">'+gruppi[index].name+'</option>';
+    html += '<option value="'+gruppi[index].name+'/>';
   }
-  document.getElementById('calendar_gruppi').innerHTML = html;
+  document.getElementById('availability_grouplist').innerHTML = html;
 
+  data1 = data.getDate()+'/'+data.getMonth()+'/'+data.getFullYear();
+  data2 = calcolaData2();
+  let splitted = data2.split('/');
+
+  document.getElementById('availability_period-from').innerHTML = addZero(data.getDate())+'/'+addZero(data.getMonth()+1);
+  document.getElementById('availability_period-to').innerHTML = addZero(splitted[0])+'/'+addZero(parseInt(splitted[1])+1);
+  
+  //calendario visualizzato
   let giorni = "";
-  let mese = data.getMonth();
-  document.getElementById('mese').innerHTML = arraymonth[mese];
-  document.getElementById('mese').setAttribute('data-trn-key', arraymonth[mese]);
-  let anno = data.getFullYear();
-  document.getElementById('anno').innerHTML = anno;
-  for (let index = 0; index < data.getUTCDay(); index++) {
-    giorni += '<li></li>';
+  ndays = arrayndays[datacalendario.getMonth()];
+  document.getElementById('availability_calendar-period-month').innerHTML = arraymonth[datacalendario.getMonth()];
+  document.getElementById('availability_calendar-period-month').setAttribute('data-trn-key', arraymonth[datacalendario.getMonth()]);
+  document.getElementById('availability_calendar-period-year').innerHTML = datacalendario.getFullYear();
+
+  for (let index = 0; index < datacalendario.getUTCDay(); index++) {
+    giorni += '<li></li>'; //giorni vuoti
   }
-  ndays = arrayndays[mese];
-  if(mese==1) //febbraio
+
+
+  if(datacalendario.getMonth()==1) //febbraio
   {
-    if(anno%400==0 || anno%4==0 && !(anno%100==0))
+    if(datacalendario.getFullYear()%400==0 || datacalendario.getFullYear()%4==0 && !(datacalendario.getFullYear()%100==0))
     {
       ndays = 29;
     }
   }
 
   for (let index = 1; index <= ndays; index++) {
-    let id = index+'/'+mese+'/'+anno;
+    let id = index+'/'+datacalendario.getMonth()+'/'+datacalendario.getFullYear();
     if(id == data1 || id == data2)
     {
       giorni += '<li id="'+id+'" class="active" onclick="selectData(this.id)">'+index+'</li>';
@@ -236,72 +246,49 @@ function costruisciCalendario() {
     else
       giorni += '<li id="'+id+'" onclick="selectData(this.id)">'+index+'</li>';
   }
-  document.getElementById('days').innerHTML = giorni;
+  document.getElementById('availability_calendar-days').innerHTML = giorni;
   loadLang();
   striscione();
 }
-function previousMonth() {
-  let month = data.getMonth(); 
-  if(month==0)
-  {
-    let year = data.getFullYear(); 
-    data.setFullYear(year-1);
-    data.setMonth(11);
-    document.getElementById('anno').innerHTML = data.getFullYear();
-  }
-  else
-  {
-    data.setMonth(month-1);
-  }
+function previousPeriod() {
+  data.setDate(data.getDate() - 7);
   costruisciCalendario();
 }
-function nextMonth() {
-  let month = data.getMonth(); 
-  if(month==11)
-  {
-    let year = data.getFullYear(); 
-    data.setFullYear(year+1);
-    data.setMonth(0);
-    document.getElementById('anno').innerHTML = data.getFullYear();
-  }
-  else
-  {
-    data.setMonth(month+1);
-  }
-  document.getElementById('mese').innerHTML = arraymonth[data.getMonth()];
+function nextPeriod() {
+  data.setDate(data.getDate() + 7);
   costruisciCalendario();
 }
 
+function previousMonth() {
+  datacalendario.setMonth(datacalendario.getMonth()-1);
+  costruisciCalendario();
+}
+function nextMonth() {
+  datacalendario.setMonth(datacalendario.getMonth()+1);
+  costruisciCalendario();
+}
+
+function calcolaData2() {
+  const datatmp = new Date();
+  datatmp.setDate(data.getDate() + 6);
+  giornofine = datatmp.getDate();
+  mesefine = datatmp.getMonth();
+  return datatmp.getDate()+'/'+datatmp.getMonth()+'/'+datatmp.getFullYear();
+}
+
 function selectData(id) {
-  if(document.getElementById(id).classList.contains('active'))
-  {
-    document.getElementById(id).classList.remove('active');
-    if(id == data1)
-      data1 = "";
-    else
-      data2 = "";
-  }
-  else
-  {
-    if(data1 == "")
-      data1 = id;
-    else if(data2 == "")
-      data2 = id;
-    else
-    {
-      try { document.getElementById(data2).classList.remove('active'); } catch (error) {}
-      data2 = id;
-    }
-    document.getElementById(id).classList.add('active');
-  }
-  striscione();
+  let splitted = id.split('/');
+  data.setDate(splitted[0]);
+  data.setMonth(splitted[1]);
+  data.setFullYear(splitted[2]);
+  costruisciCalendario();
 }
 function striscione() {
   clearStriscione();
   if(data1 != "" && data2!= "")
   {
-    let datamax = new Date(scomponiData(data1));
-    let datamin = new Date(scomponiData(data2));
+    let datamax = new Date(creaDatadDaId(data1));
+    let datamin = new Date(creaDatadDaId(data2));
     if(datamax<datamin)
     {
       const tmp = new Date(datamin);
@@ -311,13 +298,13 @@ function striscione() {
 
     for (datamin.setDate(datamin.getDate() + 1);datamin<datamax;datamin.setDate(datamin.getDate() + 1)) {
       try { document.getElementById(datamin.getDate()+'/'+datamin.getMonth()+'/'+datamin.getFullYear()).classList.add('striscione'); } catch (error) {
-        if(data.getMonth()<=datamax.getMonth())
+        if(datacalendario.getMonth()<=datamax.getMonth())
         {
-          if(data.getMonth()!=datamin.getMonth()-1)
+          if(datacalendario.getMonth()!=datamin.getMonth()-1)
           {
             datamin.setDate(1);
-            datamin.setMonth(data.getMonth());
-            datamin.setFullYear(data.getFullYear());
+            datamin.setMonth(datacalendario.getMonth());
+            datamin.setFullYear(datacalendario.getFullYear());
             document.getElementById(datamin.getDate()+'/'+datamin.getMonth()+'/'+datamin.getFullYear()).classList.add('striscione');
           }
           else
@@ -331,44 +318,35 @@ function striscione() {
   }
 }
 function clearStriscione() {
-  let mese = data.getMonth();
-  let year = data.getFullYear();
+  let mese = datacalendario.getMonth();
+  let year = datacalendario.getFullYear();
     for (let index = 1; index <= ndays; index++) {
     try { document.getElementById(index+'/'+mese+'/'+year).classList.remove('striscione'); } catch (error) {}
   }
 }
 
-function scomponiData(data) {
+function creaDatadDaId(dataid) {
   const datatmp = new Date();
-  let splitted = data.split('/');
+  let splitted = dataid.split('/');
   datatmp.setFullYear(splitted[2]);
   datatmp.setMonth(splitted[1]);
   datatmp.setDate(splitted[0]);
   return datatmp;
 }
+function addZero(numero) { if(numero<10) return '0'+numero; else return numero; }
 
 function hideCalendar() {
-  document.getElementById('header').style.display = 'none';
-  document.getElementById('calendar').style.display = 'none';
-  document.getElementById('hider-iconup').style.display = 'none';
-  document.getElementById('hider-icondown').style.display = '';
-  document.getElementById('calendar-hider').onclick = viewCalendar;
-  document.getElementById('adds').style.display = '';
-
-  if(document.getElementById('calendar_gruppi').value == "all")
-    document.getElementById('search_groups').style.display = '';
-  else
-    document.getElementById('search_groups').style.display = 'none';
+  document.getElementById('availability_calendar').style.display = 'none';
+  document.getElementById('availability_period').onclick = viewCalendar;
+  document.getElementById('availability_grid').style.display = '';
 }
 
 function viewCalendar() {
-  document.getElementById('header').style.display = '';
-  document.getElementById('calendar').style.display = '';
-  document.getElementById('hider-iconup').style.display = '';
-  document.getElementById('hider-icondown').style.display = 'none';
-  document.getElementById('calendar-hider').onclick = hideCalendar;
-  document.getElementById('adds').style.display = 'none';
-  grigliaElenco();
+  document.getElementById('availability_header').style.display = '';
+  document.getElementById('availability_calendar').style.display = '';
+  document.getElementById('availability_period').onclick = hideCalendar;
+  document.getElementById('availability_grid').style.display = 'none';
+  griglia();
 }
 
 function selectTrattamento(trattamento) {
@@ -378,18 +356,18 @@ function selectTrattamento(trattamento) {
   if(!document.getElementById(trattamento).classList.contains('active'))
     flag=true;
   for (let index = 0; index < 6; index++)
-    try {document.getElementById('trattamento_'+index).classList.remove('active'); } catch (error) {} 
+    try {document.getElementById('accomodation_'+index).classList.remove('active'); } catch (error) {} 
   if(flag)
     document.getElementById(trattamento).classList.add('active');
 
-  grigliaElenco();
+  griglia();
 }
 
 function richiediDisponibilita() {
 
 }
 
-function grigliaElenco() {
+function griglia() {
   if(document.getElementById('calendar_gruppi').value == "all")
   {
     
@@ -431,23 +409,23 @@ function viewHome() { //pagona centrale
   document.getElementById("home").style.display = '';
 }
 
-function viewPrenotazioni() { //pagina tutta a sinistra (la chiave)
+function viewBookings() { //pagina tutta a sinistra (la chiave)
   clearPages();
-  document.getElementById("navbar_prenotazioni").classList.add("active");
-  document.getElementById("prenotazioni").style.display = '';
-  document.getElementById("filter").style.display = 'none';
+  document.getElementById("navbar_bookings").classList.add("active");
+  document.getElementById("bookings").style.display = '';
+  document.getElementById("bookings_filter").style.display = 'none';
   elencoPrenotazioni();
 }
-function showFilter() {
-  document.getElementById("filter").style.display = '';
+function showBookingsFilter() {
+  document.getElementById("bookings_filter").style.display = '';
   for (let index = 0; index < document.getElementsByClassName("page").length; index++){document.getElementsByClassName("page")[index].style.opacity = 0.5;}
-  document.getElementById("filter").style.opacity = 1;
+  document.getElementById("bookings_filter").style.opacity = 1;
 }
 
-function viewDisponibilita() { //pagina tutta a sinistra (la chiave)
+function viewAvailability() { //pagina tutta a sinistra (la chiave)
   clearPages();
-  document.getElementById("navbar_disponibilita").classList.add("active");
-  document.getElementById("disponibilita").style.display = '';
+  document.getElementById("navbar_availability").classList.add("active");
+  document.getElementById("availability").style.display = '';
   
   costruisciCalendario();
   elencoGruppi();
@@ -475,12 +453,12 @@ function clearPages() {
   document.getElementById("navbar_home").classList.remove("active");
   document.getElementById("user").style.display = 'none';
 
-  document.getElementById("prenotazioni").style.display = 'none';
-  document.getElementById("navbar_prenotazioni").classList.remove("active");
-  document.getElementById("filter").style.display = 'none';
+  document.getElementById("bookings").style.display = 'none';
+  document.getElementById("navbar_bookings").classList.remove("active");
+  document.getElementById("bookings_filter").style.display = 'none';
 
-  document.getElementById("disponibilita").style.display = 'none';
-  document.getElementById("navbar_disponibilita").classList.remove("active");
+  document.getElementById("availability").style.display = 'none';
+  document.getElementById("navbar_availability").classList.remove("active");
 
   document.getElementById("crm").style.display = 'none';
   document.getElementById("navbar_crm").classList.remove("active");
@@ -504,7 +482,7 @@ function viewUser() { //pagina che si apre cliccando l'icona (nella home)
   document.getElementById("user").style.display = '';
 
   // Update
-  document.getElementById("bigprofilepic").src = profilepic;
+  document.getElementById("user_bigprofilepic").src = profilepic;
   document.getElementById("user_nome").innerHTML = nome;
   document.getElementById("user_email").value = email;
   document.getElementById("user_psw").onclick = cambiaPsw;

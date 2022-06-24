@@ -33,8 +33,7 @@
         <script src="js/jquery-3.6.0.min.js"></script>    
     </head>
     <body class="fullscreen">
-        
-        <div id="google_translate_element" style="display: none;"></div>
+
         <!-- PAGINA DI CARICAMENTO -->
         <div id="loading" class="page" >
             <img src="images/loading-page.gif" alt="">
@@ -76,7 +75,7 @@
             <div class="container-fluid">
                 <div class="p-3 row flex-column justify-center">
                     <div class="profile_picture">
-                        <img id="bigprofilepic" src="" class="img-fluid rounded-circle profilepic" style="width: 100px; height:100px;" onclick="cambiaProfilePic()" alt="profile-image">
+                        <img id="user_bigprofilepic" src="" class="img-fluid rounded-circle profilepic" style="width: 100px; height:100px;" onclick="cambiaProfilePic()" alt="profile-image">
                     </div>
                     <div class="">
                         <p class="h2" id="user_nome"></p>
@@ -108,7 +107,7 @@
                                     <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
                                 </svg>
                             </div>
-                            <div class="col-7" id="lang">
+                            <div class="col-7" id="user_lang">
                             </div>
                             <div class="col-2" onclick="forwardLang()">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
@@ -128,12 +127,12 @@
     
         <!-- INIZIO PAGINE -->
         <!-- PRENOTAZIONI -->
-        <div id="prenotazioni" class="page" style="display: none;">
+        <div id="bookings" class="page" style="display: none;">
             <div class="container-fluid mt-3 mb-3">
                 <div class="row flex-column justify-center">
                     <div class="input-group">
-                        <input type="text" id="prenotazioni_search" placeholder="Search Bookings" data-trn-holder="searchfield" class="input-search shadow-none form-control trn" aria-describedby="filter-addon">
-                        <span onclick="showFilter()" class="input-group-text bg-transparent text-dark" id="filter-addon">
+                        <input type="text" id="bookings_search" placeholder="Search Bookings" data-trn-holder="searchfield" class="input-search shadow-none form-control trn" aria-describedby="filter-addon">
+                        <span onclick="showBookingsFilter()" class="input-group-text bg-transparent text-dark" id="bookings_search-filter">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-filter" viewbox="0 0 16 16">
                                 <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
                             </svg>
@@ -141,20 +140,20 @@
                     </div>
                 </div>
             </div>
-            <div class="container-fluid" id="elenco">
+            <div class="container-fluid" id="bookings_list">
                 <div class="loading">
                     <img src="images/loading-page.gif" alt="">
                 </div>
             </div>
         </div>
-        <div id="filter" style="display: none;">
-            <div onclick="viewPrenotazioni()" class="vuoto"> <!--  appena si esce dal filtro riaggiorna tutte le prenotazioni  -->
+        <div id="bookings_filter" style="display: none;">
+            <div onclick="viewBookings()" class="vuoto"> <!--  appena si esce dal filtro riaggiorna tutte le prenotazioni  -->
 
             </div>
             <div class="container-fluid">
                 <span class="trn">FILTER BY</span>
                 <div class="canali field d-flex flex-column align-items-center justify-content-center">
-                    <select name="" id="filter_canali">
+                    <select name="" id="bookings_filter-channels">
                         <option value="0" class="trn">ALL CHANNELS</option>
                         <option value="1">iperbooking</option>
                         <option value="83">CRM</option>
@@ -169,14 +168,14 @@
                 <div class="date field d-flex flex-column align-items-center justify-content-center">
                     <div class="d-flex align-items-center justify-content-center">
                         <span class="trn">from</span>
-                        <input type="date" name="" id="filter_arrivo">
+                        <input type="date" name="" id="bookings_filter-from">
                         <span class="trn">to</span>
-                        <input type="date" name="" id="filter_partenza">
+                        <input type="date" name="" id="bookings_filter-to">
                     </div>
                 </div>
 
                 <div class="filtradata field d-flex flex-column align-items-center justify-content-center">
-                    <select name="" id="filter_filtradata">
+                    <select name="" id="bookings_filter-date">
                         <option value="prenotata" class="trn">confirmed booking</option>
                         <option value="arrivo" class="trn">arrival</option>
                         <option value="partenza" class="trn">departure</option>
@@ -184,8 +183,8 @@
                     </select>
                 </div>
                 <div class="filtraeliminate p-0 m-2 field d-flex flex-column align-items-center justify-content-center form-check form-switch">
-                    <label class="form-check-label trn" for="filter_filtraeliminate">Deleted</label>
-                    <input class="form-check-input" type="checkbox" role="switch" id="filter_filtraeliminate">
+                    <label class="form-check-label trn" for="bookings_filter-deleted">Deleted</label>
+                    <input class="form-check-input" type="checkbox" role="switch" id="bookings_filter-deleted">
                 </div>
             </div>
         </div>
@@ -193,54 +192,64 @@
 
 
         <!-- DISPONIBILITA -->
-        <div id="disponibilita" class="page" style="display: none;">
+        <div id="availability" class="page" style="display: none;">
             <div class="header">
-                <div class="container-fluid" id="header">
-                    <div class="arrow-left" onclick="previousMonth()">
+                <div class="container-fluid" id="availability_header">
+                    <div class="arrow-left" onclick="previousPeriod()">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg> 
                     </div>
-                    <div class="data">
-                        <div class="mese">
-                            <span class="trn" id="mese"></span>
-                        </div>
-                        <div class="anno">
-                            <span id="anno"></span>
-                        </div>
+                    <div class="periodo" id="availability_period" onclick="hideCalendar()">
+                        <span class="settimana" id="availability_period-from"></span>
+                        -
+                        <span class="settimana" id="availability_period-to"></span>
                     </div>
-                    <div class="arrow-right" onclick="nextMonth()">
+                    <div class="arrow-right" onclick="nextPeriod()">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
                     </div>
                 </div> 
                 <div class="container-fluid filter">
                     <div class="gruppi">
-                        <select name="" id="calendar_gruppi" onchange="grigliaElenco()">
+                        <input type="text" value="all groups" list="availability_grouplist" id="availability_group">
+                        <datalist name="" id="availability_grouplist" onchange="grigliaElenco()">
 
-                        </select>
+                        </datalist>
                     </div>
                     <div class="trattamenti">
-                        <div class="trattamento" id="trattamento_0" onclick="selectTrattamento(this.id)">
+                        <div class="trattamento" id="accomodation_0" onclick="selectTrattamento(this.id)">
                             <span>AI</span>
                         </div>
-                        <div class="trattamento" id="trattamento_1" onclick="selectTrattamento(this.id)">
+                        <div class="trattamento" id="accomodation_1" onclick="selectTrattamento(this.id)">
                             <span>FB</span>
                         </div>
-                        <div class="trattamento" id="trattamento_2" onclick="selectTrattamento(this.id)">
+                        <div class="trattamento" id="accomodation_2" onclick="selectTrattamento(this.id)">
                             <span>HB</span>
                         </div>
-                        <div class="trattamento" id="trattamento_3" onclick="selectTrattamento(this.id)">
+                        <div class="trattamento" id="accomodation_3" onclick="selectTrattamento(this.id)">
                             <span>BB</span>
                         </div>
-                        <div class="trattamento" id="trattamento_4" onclick="selectTrattamento(this.id)">
+                        <div class="trattamento" id="accomodation_4" onclick="selectTrattamento(this.id)">
                             <span>B</span>
                         </div>
-                        <div class="trattamento" id="trattamento_5" onclick="selectTrattamento(this.id)">
+                        <div class="trattamento" id="accomodation_5" onclick="selectTrattamento(this.id)">
                             <span>AP</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="container-fluid">
-                <div class="calendar" id="calendar">
+            <div class="container-fluid" id="availability_calendar">
+                <div class="container-fluid header" id="availability_calendar-header">
+                    <div class="arrow-left" onclick="previousMonth()">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg> 
+                    </div>
+                    <div class="periodo" id="availability_calendar-period">
+                        <span class="mese" id="availability_calendar-period-month"></span>
+                        <span class="anno" id="availability_calendar-period-year"></span>
+                    </div>
+                    <div class="arrow-right" onclick="nextMonth()">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
+                    </div>
+                </div> 
+                <div class="calendar">
                     <div class="weekdays">
                         <li class="trn" style="color: red;">s</li>
                         <li class="trn">m</li>
@@ -250,53 +259,46 @@
                         <li class="trn">f</li>
                         <li class="trn">s</li>
                     </div>
-                    <div id="days" class="days">
+                    <div id="availability_calendar-days" class="days">
     
                     </div> 
                 </div>
             </div>
-            <div class="container-fluid">
-                <div class="hider" id="calendar-hider" onclick="hideCalendar()">
-                    <svg id="hider-iconup" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-compact-up" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M7.776 5.553a.5.5 0 0 1 .448 0l6 3a.5.5 0 1 1-.448.894L8 6.56 2.224 9.447a.5.5 0 1 1-.448-.894l6-3z"/>
-                    </svg>
-                    <svg id="hider-icondown" style="display: none;" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
-                    </svg>
-                </div>
-            </div>
-            <div class="container-fluid" id="adds" style="display: none;">
+            <div class="container-fluid" id="availability_grid" style="display: none;">
                 <div class="header">
                     <div class="riga">
-                        <div class="col">
+                        <div class="col" id="availability_grid-period-1">
                             <span class="day">01/07</span>
                             <span class="weekday" style="color: #F00;">S</span>
                         </div>
-                        <div class="col">
+                        <div class="col" id="availability_grid-period-2">
                             <span class="day">02/07</span>
                             <span class="weekday">M</span>
                         </div>
-                        <div class="col">
+                        <div class="col" id="availability_grid-period-3">
                             <span class="day">03/07</span>
                             <span class="weekday">T</span>
                         </div>
-                        <div class="col">
+                        <div class="col" id="availability_grid-period-4">
                             <span class="day">04/07</span>
                             <span class="weekday">W</span>
                         </div>
-                        <div class="col">
+                        <div class="col" id="availability_grid-period-5">
                             <span class="day">05/07</span>
                             <span class="weekday">T</span>
                         </div>
-                        <div class="col">
+                        <div class="col" id="availability_grid-period-6">
                             <span class="day">06/07</span>
                             <span class="weekday">F</span>
                         </div>
-                        <div class="col">
+                        <div class="col" id="availability_grid-period-7">
                             <span class="day">07/07</span>
                             <span class="weekday">S</span>
                         </div>                   
                     </div>
+                </div>
+                <div class="filter">
+
                 </div>
                 <div class="elenco">
                     <div class="gruppo">
@@ -616,28 +618,28 @@
         <nav id="navbar" class="p-0 bg-white">
             <div class="container-fluid justify-content-center">
                 <ul class="navbar-nav justify-content-center flex-row" >
-                    <li class="d-flex flex-column align-items-center justify-content-center m-1 rounded-circle text-dark nav-item" style="width: 60px;">
-                        <a onclick="viewPrenotazioni()" style="transform: rotate(-45deg);">
-                            <svg id="navbar_prenotazioni" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-key-fill" viewbox="0 0 16 16">
+                    <li class="d-flex flex-column align-items-center justify-content-center m-1 mt-0 mb-0 rounded-circle text-dark nav-item" style="width: 60px;">
+                        <a onclick="viewBookings()" style="transform: rotate(-45deg);">
+                            <svg id="navbar_bookings" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-key-fill" viewbox="0 0 16 16">
                                 <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
                             </svg>                            
                         </a>
-                        <label for="prenotazioni" class="trn">Bookings</label>
+                        <label for="bookings" class="trn">Bookings</label>
                     </li>
-                    <li class="d-flex flex-column align-items-center justify-content-center m-1 rounded-circle text-dark nav-item" style="width: 60px;">
-                        <a onclick="viewDisponibilita()">
-                            <svg id="navbar_disponibilita" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-calendar-week-fill" viewbox="0 0 16 16">
+                    <li class="d-flex flex-column align-items-center justify-content-center m-1 mt-0 mb-0 rounded-circle text-dark nav-item" style="width: 60px;">
+                        <a onclick="viewAvailability()">
+                            <svg id="navbar_availability" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-calendar-week-fill" viewbox="0 0 16 16">
                                 <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zM9.5 7h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm3 0h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zM2 10.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z"/>
                             </svg>
                         </a>
-                        <label for="disponibilita" class="trn">Availability</label>
+                        <label for="availability" class="trn">Availability</label>
                     </li>
-                    <li class="d-flex flex-column align-items-center justify-content-center m-1 rounded-circle text-dark nav-item" style="width: 60px;">
+                    <li class="d-flex flex-column align-items-center justify-content-center m-1 mt-0 mb-0 rounded-circle text-dark nav-item" style="width: 60px;">
                         <a onclick="viewHome()">
                             <img id="navbar_home" class="rounded-circle" src="images/iperbooking-icon-128.png" width="60px" height="60px" alt="">
                         </a>
                     </li>
-                    <li class="d-flex flex-column align-items-center justify-content-center m-1 rounded-circle text-dark nav-item" style="width: 60px;">
+                    <li class="d-flex flex-column align-items-center justify-content-center m-1 mt-0 mb-0 rounded-circle text-dark nav-item" style="width: 60px;">
                         <a onclick="viewCRM()">
                             <svg id="navbar_crm" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
                                 <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -646,7 +648,7 @@
                         </a>
                         <label for="crm" class="trn">CRM</label>
                     </li>
-                    <li class="d-flex flex-column align-items-center justify-content-center m-1 rounded-circle text-dark nav-item" style="width: 60px;">
+                    <li class="d-flex flex-column align-items-center justify-content-center m-1 mt-0 mb-0 rounded-circle text-dark nav-item" style="width: 60px;">
                         <a onclick="viewSettings()">
                             <svg id="navbar_settings" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-gear-wide" viewbox="0 0 16 16">
                                 <path d="M8.932.727c-.243-.97-1.62-.97-1.864 0l-.071.286a.96.96 0 0 1-1.622.434l-.205-.211c-.695-.719-1.888-.03-1.613.931l.08.284a.96.96 0 0 1-1.186 1.187l-.284-.081c-.96-.275-1.65.918-.931 1.613l.211.205a.96.96 0 0 1-.434 1.622l-.286.071c-.97.243-.97 1.62 0 1.864l.286.071a.96.96 0 0 1 .434 1.622l-.211.205c-.719.695-.03 1.888.931 1.613l.284-.08a.96.96 0 0 1 1.187 1.187l-.081.283c-.275.96.918 1.65 1.613.931l.205-.211a.96.96 0 0 1 1.622.434l.071.286c.243.97 1.62.97 1.864 0l.071-.286a.96.96 0 0 1 1.622-.434l.205.211c.695.719 1.888.03 1.613-.931l-.08-.284a.96.96 0 0 1 1.187-1.187l.283.081c.96.275 1.65-.918.931-1.613l-.211-.205a.96.96 0 0 1 .434-1.622l.286-.071c.97-.243.97-1.62 0-1.864l-.286-.071a.96.96 0 0 1-.434-1.622l.211-.205c.719-.695.03-1.888-.931-1.613l-.284.08a.96.96 0 0 1-1.187-1.186l.081-.284c.275-.96-.918-1.65-1.613-.931l-.205.211a.96.96 0 0 1-1.622-.434L8.932.727zM8 12.997a4.998 4.998 0 1 1 0-9.995 4.998 4.998 0 0 1 0 9.996z"/>
