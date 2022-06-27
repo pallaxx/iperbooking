@@ -1,2 +1,6 @@
 - nella pagina prenotazioni prendere fare chiamata ajax normale
 dell'eleno ma mostrare tutto in una pagina fatta male aspettando l'altra ajax
+
+- finire elenco / cambia strutture
+
+- finire pagina disponibilita

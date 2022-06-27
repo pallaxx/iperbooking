@@ -403,5 +403,68 @@ var dict = {
         de: "Gelöscht",
         ru: "удален",
         zh: "已删除"
+    },
+    "Mon": {
+        en: "M",
+        it: "L",
+        es: "L",
+        fr: "",
+        de: "",
+        ru: "",
+        zh: ""
+    },
+    "Tue": {
+        en: "T",
+        it: "M",
+        es: "M",
+        fr: "",
+        de: "",
+        ru: "",
+        zh: ""
+    },
+    "Wed": {
+        en: "W",
+        it: "M",
+        es: "M",
+        fr: "",
+        de: "",
+        ru: "",
+        zh: ""
+    },
+    "Thu": {
+        en: "T",
+        it: "G",
+        es: "",
+        fr: "",
+        de: "",
+        ru: "",
+        zh: ""
+    },
+    "Fri": {
+        en: "F",
+        it: "V",
+        es: "",
+        fr: "",
+        de: "",
+        ru: "",
+        zh: ""
+    },
+    "Sat": {
+        en: "S",
+        it: "S",
+        es: "",
+        fr: "",
+        de: "",
+        ru: "",
+        zh: ""
+    },
+    "Sun": {
+        en: "S",
+        it: "D",
+        es: "D",
+        fr: "",
+        de: "",
+        ru: "",
+        zh: ""
     }
   }

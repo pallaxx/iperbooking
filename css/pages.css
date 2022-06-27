@@ -2,6 +2,7 @@
 .fullscreen .page{
     height: 89vh;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 /* HOME */
@@ -594,11 +595,54 @@
     align-items: center;
 }
 
+.fullscreen .page#availability .container-fluid#availability_grid .filter{
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: fit-content;
+} .fullscreen .page#availability .container-fluid#availability_grid .filter svg{
+    width: 30px;
+    height: 30px;
+}
+
+.fullscreen .page#availability .container-fluid#availability_grid .filter .check-in{
+    margin-right: auto;
+    order: 0;
+} .fullscreen .page#availability .container-fluid#availability_grid .filter .check-in svg{
+    color: #000;
+    transition: all 0s ease;
+}
+
+.fullscreen .page#availability .container-fluid#availability_grid .filter .check-out{
+    margin-left: auto;
+    margin-right: auto;
+    order: 1;
+} .fullscreen .page#availability .container-fluid#availability_grid .filter .check-out svg{
+    color: #000;
+    transition: all 0s ease;
+}
+
+.fullscreen .page#availability .container-fluid#availability_grid .filter .nights{
+    margin-left: auto;
+    order: 2;
+} .fullscreen .page#availability .container-fluid#availability_grid .filter .nights svg{
+    color: #000;
+    transition: all 0s ease;
+}
+.fullscreen .page#availability .container-fluid#availability_grid .filter .active{
+    position: relative;
+}
+.fullscreen .page#availability .container-fluid#availability_grid .filter .active svg{
+    color: var(--selected);
+}
+
 .fullscreen .page#availability .container-fluid#availability_grid .elenco {
-    margin-bottom: 10vh;
+    margin: 0;
 }
 .fullscreen .page#availability .container-fluid#availability_grid .elenco .gruppo {
-    margin: 20px;
+    margin: 10px;
 }
 .fullscreen .page#availability .container-fluid#availability_grid .elenco .gruppo .header {
     position: initial;
@@ -687,7 +731,7 @@
 .fullscreen nav{
     opacity: 1;
     z-index: 5000;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
 }

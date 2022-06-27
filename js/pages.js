@@ -169,12 +169,15 @@ function stampaGiorno(stringadata) {return arraymonth[parseInt(stringadata.slice
 
 
 // ------ disponibilita page --------------------------------------------------------------------------------------------------------------
+let arrayUTCDay = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 let gruppi = [];
-const data = new Date(); //data periodo
-const datacalendario = new Date();//data calendario
-let ndays;
-let data1 = "";
-let data2 = "";
+const data1 = new Date(); //data periodo
+const data2 = new Date(); //data periodo
+const datacalendario = new Date();//data calendario visivo
+let ndays; //numero giorni in un mese
+let data1id = "";
+let data2id = "";
+cambiaPeriodo();
 
 
 //AJAX per l'elenco dei gruppi creati
@@ -200,8 +203,7 @@ function elencoGruppi() {
   }
 }
 
-
-function costruisciCalendario() {
+function cambiaPeriodo() {
   //GRUPPI
   let html='<option value="all groups"/>';
   html+='<option value="gruppo prova"/>';
@@ -210,13 +212,56 @@ function costruisciCalendario() {
   }
   document.getElementById('availability_grouplist').innerHTML = html;
 
-  data1 = data.getDate()+'/'+data.getMonth()+'/'+data.getFullYear();
-  data2 = calcolaData2();
-  let splitted = data2.split('/');
+  data1id = data1.getDate()+'/'+data1.getMonth()+'/'+data1.getFullYear();
+  calcolaData2();
 
-  document.getElementById('availability_period-from').innerHTML = addZero(data.getDate())+'/'+addZero(data.getMonth()+1);
-  document.getElementById('availability_period-to').innerHTML = addZero(splitted[0])+'/'+addZero(parseInt(splitted[1])+1);
-  
+  document.getElementById('availability_period-from').innerHTML = addZero(data1.getDate())+'/'+addZero(data1.getMonth()+1);
+  document.getElementById('availability_period-to').innerHTML = addZero(data2.getDate())+'/'+addZero(data2.getMonth()+1);
+
+  for (let index = 0; index < 7; index++)
+  {
+    const tmp = new Date();
+    tmp.setMonth(data1.getMonth());
+    tmp.setDate(data1.getDate()+index);
+    if(tmp.getUTCDay()==0)
+      document.getElementById('availability_grid-period-'+(index+1)).innerHTML = '<span class="day">'+addZero(tmp.getDate())+'/'+addZero(tmp.getMonth()+1)+'</span><span class="weekday trn" style="color:#F00;">'+arrayUTCDay[tmp.getUTCDay()]+'</span>';
+    else
+      document.getElementById('availability_grid-period-'+(index+1)).innerHTML = '<span class="day">'+addZero(tmp.getDate())+'/'+addZero(tmp.getMonth()+1)+'</span><span class="weekday trn">'+arrayUTCDay[tmp.getUTCDay()]+'</span>';
+    
+    document.getElementById('availability_grid-period-'+(index+1)).setAttribute('data-trn-key', arrayUTCDay[data1.getUTCDay()]);
+  }
+  loadLang();
+  richiediDisponibilita();
+}
+function previousPeriod() {
+  data1.setDate(data1.getDate() - 7);
+  cambiaPeriodo();
+  costruisciCalendario();
+}
+function nextPeriod() {
+  data1.setDate(data1.getDate() + 7);  
+  cambiaPeriodo();
+  costruisciCalendario();
+}
+function previousDay() {
+  data1.setDate(data1.getDate() - 1);
+  cambiaPeriodo();
+  costruisciCalendario();
+}
+function nextDay() {
+  data1.setDate(data1.getDate() + 1);
+  cambiaPeriodo();
+  costruisciCalendario();
+}
+
+function calcolaData2() {
+  data2.setMonth(data1.getMonth());
+  data2.setDate(data1.getDate() + 6);
+  data2id = data2.getDate()+'/'+data2.getMonth()+'/'+data2.getFullYear();
+}
+
+
+function costruisciCalendario() {
   //calendario visualizzato
   let giorni = "";
   ndays = arrayndays[datacalendario.getMonth()];
@@ -227,8 +272,6 @@ function costruisciCalendario() {
   for (let index = 0; index < datacalendario.getUTCDay(); index++) {
     giorni += '<li></li>'; //giorni vuoti
   }
-
-
   if(datacalendario.getMonth()==1) //febbraio
   {
     if(datacalendario.getFullYear()%400==0 || datacalendario.getFullYear()%4==0 && !(datacalendario.getFullYear()%100==0))
@@ -237,28 +280,44 @@ function costruisciCalendario() {
     }
   }
 
+  var flag = false;
+  var flag2 = false;
   for (let index = 1; index <= ndays; index++) {
     let id = index+'/'+datacalendario.getMonth()+'/'+datacalendario.getFullYear();
-    if(id == data1 || id == data2)
+    if(datacalendario.getMonth() > data1.getMonth() && datacalendario.getMonth() <= data2.getMonth() )
+    {
+      if(!flag2)
+        flag = true;
+    }
+    if(id == data1id)
     {
       giorni += '<li id="'+id+'" class="active" onclick="selectData(this.id)">'+index+'</li>';
+      flag=true;
+    }
+    else if(id == data2id)
+    {
+      giorni += '<li id="'+id+'" class="active" onclick="selectData(this.id)">'+index+'</li>';
+      flag = false;
+      flag2 = true;
+    }
+    else if(flag)
+    {
+      giorni += '<li id="'+id+'" class="striscione" onclick="selectData(this.id)">'+index+'</li>';
     }
     else
       giorni += '<li id="'+id+'" onclick="selectData(this.id)">'+index+'</li>';
   }
   document.getElementById('availability_calendar-days').innerHTML = giorni;
   loadLang();
-  striscione();
 }
-function previousPeriod() {
-  data.setDate(data.getDate() - 7);
+function selectData(id) {
+  let splitted = id.split('/');
+  data1.setDate(splitted[0]);
+  data1.setMonth(splitted[1]);
+  data1.setFullYear(splitted[2]);
+  cambiaPeriodo();
   costruisciCalendario();
 }
-function nextPeriod() {
-  data.setDate(data.getDate() + 7);
-  costruisciCalendario();
-}
-
 function previousMonth() {
   datacalendario.setMonth(datacalendario.getMonth()-1);
   costruisciCalendario();
@@ -268,71 +327,21 @@ function nextMonth() {
   costruisciCalendario();
 }
 
-function calcolaData2() {
-  const datatmp = new Date();
-  datatmp.setDate(data.getDate() + 6);
-  giornofine = datatmp.getDate();
-  mesefine = datatmp.getMonth();
-  return datatmp.getDate()+'/'+datatmp.getMonth()+'/'+datatmp.getFullYear();
-}
-
-function selectData(id) {
-  let splitted = id.split('/');
-  data.setDate(splitted[0]);
-  data.setMonth(splitted[1]);
-  data.setFullYear(splitted[2]);
+function returnToPeriod() {
+  datacalendario.setDate(data1.getDate());
+  datacalendario.setMonth(data1.getMonth());
+  datacalendario.setFullYear(data1.getFullYear());
   costruisciCalendario();
 }
-function striscione() {
-  clearStriscione();
-  if(data1 != "" && data2!= "")
-  {
-    let datamax = new Date(creaDatadDaId(data1));
-    let datamin = new Date(creaDatadDaId(data2));
-    if(datamax<datamin)
-    {
-      const tmp = new Date(datamin);
-      datamin = datamax;
-      datamax = tmp; 
-    }
 
-    for (datamin.setDate(datamin.getDate() + 1);datamin<datamax;datamin.setDate(datamin.getDate() + 1)) {
-      try { document.getElementById(datamin.getDate()+'/'+datamin.getMonth()+'/'+datamin.getFullYear()).classList.add('striscione'); } catch (error) {
-        if(datacalendario.getMonth()<=datamax.getMonth())
-        {
-          if(datacalendario.getMonth()!=datamin.getMonth()-1)
-          {
-            datamin.setDate(1);
-            datamin.setMonth(datacalendario.getMonth());
-            datamin.setFullYear(datacalendario.getFullYear());
-            document.getElementById(datamin.getDate()+'/'+datamin.getMonth()+'/'+datamin.getFullYear()).classList.add('striscione');
-          }
-          else
-          {
-            break;
-          }
-        }
-      }
-    }
-    
-  }
-}
-function clearStriscione() {
-  let mese = datacalendario.getMonth();
-  let year = datacalendario.getFullYear();
-    for (let index = 1; index <= ndays; index++) {
-    try { document.getElementById(index+'/'+mese+'/'+year).classList.remove('striscione'); } catch (error) {}
-  }
-}
-
-function creaDatadDaId(dataid) {
-  const datatmp = new Date();
-  let splitted = dataid.split('/');
-  datatmp.setFullYear(splitted[2]);
-  datatmp.setMonth(splitted[1]);
-  datatmp.setDate(splitted[0]);
-  return datatmp;
-}
+// function creaDatadDaId(dataid) { BOH
+//   const datatmp = new Date();
+//   let splitted = dataid.split('/');
+//   datatmp.setFullYear(splitted[2]);
+//   datatmp.setMonth(splitted[1]);
+//   datatmp.setDate(splitted[0]);
+//   return datatmp;
+// }
 function addZero(numero) { if(numero<10) return '0'+numero; else return numero; }
 
 function hideCalendar() {
@@ -346,31 +355,71 @@ function viewCalendar() {
   document.getElementById('availability_calendar').style.display = '';
   document.getElementById('availability_period').onclick = hideCalendar;
   document.getElementById('availability_grid').style.display = 'none';
-  griglia();
+}
+
+function selectGruppi() {
+  document.getElementById('availability_accommodation-plans').style.display = 'none';
+  for(let index=0 ; index < gruppi.length ; index++)
+  {
+    if(document.getElementById('calendar_gruppi').value == gruppi.name)
+    {
+      document.getElementById('availability_accommodation-plans').style.display = '';
+      richiediDisponibilita();
+      break;
+    }
+  }
 }
 
 function selectTrattamento(trattamento) {
   //0 all inclusive, 1 full board, 2 half board, 3 bed and breakfast , 4 room only, 5 apartment
   //0 all inclusive, 1 pensione completa, 2 mezza pensione, 3 pernottamento e colazione , 4 pernottamento, 5 appartamento
+  document.getElementById('availability_grid-filter').style.display = 'none';
   var flag = false;
   if(!document.getElementById(trattamento).classList.contains('active'))
     flag=true;
   for (let index = 0; index < 6; index++)
     try {document.getElementById('accomodation_'+index).classList.remove('active'); } catch (error) {} 
   if(flag)
+  {
     document.getElementById(trattamento).classList.add('active');
-
-  griglia();
+    document.getElementById('availability_grid-filter').style.display = '';
+    richiediDisponibilita();
+  }
+}
+function selectFilter(id) {
+  var filter = document.getElementById(id).classList;
+  if(filter.contains('active'))
+    filter.remove('active');
+  else
+  {
+    filter.add('active');
+    richiediDisponibilita();
+  }
 }
 
 function richiediDisponibilita() {
+    //suddivisione di ogni filtro
+    let payload="";
+    //gruppi
+    for (let index = 0; index < gruppi.lenght; index++) {
+      if(document.getElementById('calendar_gruppi').value == gruppi[index].name)
+        payload = 'gruppi='+gruppi[index].id+'&';
+      else
+        payload += 'gruppi='+gruppi[index].id+'&';
+    }
 
-}
-
-function griglia() {
-  if(document.getElementById('calendar_gruppi').value == "all")
+    // inizio richiesta
+    var url = site+"/ajax/proxy.cfm?action=disponibilita.grigliaContent";
+    let xhrelencoa = new XMLHttpRequest();
+    xhrelencoa.withCredentials = true;
+    xhrelencoa.open("POST", url, true);
+    xhrelencoa.send(payload+'dal='+decodeURIComponent(data1)+'&numeroGiorni=6');
+    xhrelencoa.onload = handleElencoDisponibilitaResponse; 
+} function handleElencoDisponibilitaResponse() {
+  if(this.status==200)
   {
-    
+    let json = JSON.parse(this.responseText);
+    //DOVREBBE ANDARE BISOGNA SOLO FILTRARE OGNI STAMPA IN BASE AI FILTRI MESSI
   }
 }
 
@@ -388,7 +437,7 @@ function elencoStrutture() {
   if(this.status==200)
   {
     let json = JSON.parse(this.responseText);
-    if(json.count>1)
+    if(json.count>1) //DA FINIRE
     {
 
       document.getElementById("").innerHTML = input;
@@ -400,8 +449,7 @@ function elencoStrutture() {
 
 // ------ show/hide pages --------------------------------------------------------------------------------------------------------------
 viewHome(); //appena lo script viene caricato la pagina mostra la home
-document.getElementById("navbar").style.display = 'none';
-viewLoading('3'); //con un caricamento di 3 secondi
+// viewLoading('3'); //con un caricamento di 3 secondi
 
 function viewHome() { //pagona centrale
   clearPages();
@@ -475,7 +523,7 @@ function viewLoading(durata) { //durata di quanto deve caricare
 }function stopLoading() {
   document.getElementById("loading_bar").style.animationPlayState = "paused";
   document.getElementById("loading").style.display = 'none';
-  document.getElementById("navbar").style.display = '';
+
 }
 
 function viewUser() { //pagina che si apre cliccando l'icona (nella home)
