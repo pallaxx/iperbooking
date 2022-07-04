@@ -1,0 +1,6 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/021a2b64-1944-45ff-ab57-179abfa1c574/resourceGroups/iperbooking/providers/Microsoft.Web/sites/iperbookingmobile",
+    "appService.deploySubpath": ".",
+    "liveServer.settings.multiRootWorkspaceName": "IperbookingApp",
+    "liveServer.settings.port": 444
+}

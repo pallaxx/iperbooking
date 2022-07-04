@@ -1,0 +1,51 @@
+.fullscreen .container#Login {
+	text-align: center;
+}
+
+.fullscreen #form {
+	padding-top: 80px;
+
+}
+
+.fullscreen .container#Login .row{
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	text-align: center;
+	margin: 20px;
+}
+
+.fullscreen .container#Login .row .title{
+	font-size: 3rem;
+}
+
+.fullscreen .container#Login .row .field{
+	width: 80%;
+	max-width: 400px;
+	height: 2.5em;
+	padding: 2px 22px;
+	border-radius: 4px;
+	color: var(--black);
+	border: 1px solid var(--primary);
+	background-color: var(--white);
+}
+.fullscreen .container#Login .row .field:focus{
+	border: 2px solid var(--secondary) !important;
+}
+
+.fullscreen .container#Login .row img{
+	width: 50px;
+}
+.fullscreen .container#Login .row .btn{
+	max-width: 400px;
+	border-radius: 4px;
+	border: 1px solid var(--primary);
+	background-color: var(--primary);
+}
+.fullscreen .container#Login .row .btn:hover{
+	border: 2px solid var(--secondary);
+}
+.fullscreen .container#Login .row .btn span{
+	font-size: 1.5em;
+}
