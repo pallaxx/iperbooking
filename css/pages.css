@@ -314,9 +314,6 @@
 }
 
 /* Availability */
-.fullscreen .page#availability {
-
-}
 .fullscreen .page#availability .header {
     width: 100%;
     font-size: 20px;
@@ -704,11 +701,6 @@
 
 
 /* SETTINGS */
-.fullscreen .page#settings .header {
-}
-.fullscreen .page#settings .header .col-2 svg {
-
-}
 .fullscreen .page#settings .header .col-9{
     font-size: 40px;
     display: flex;

@@ -1,7 +1,11 @@
 viewLang();
 
 // ------ user page --------------------------------------------------------------------------------------------------------------
+<<<<<<< HEAD
 function cambiaPsw() { //invia una mail all'utente quando clicca il cambo richiedi nuova password
+=======
+function cambiaPsw() {
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   var url = site+"/ajax/proxy.cfm?action=utente.inviaEmailModificaPassword&idutente="+id;
   let xhrcambiapsw = new XMLHttpRequest();
   xhrcambiapsw.open("GET", url, true);
@@ -11,12 +15,20 @@ function cambiaPsw() { //invia una mail all'utente quando clicca il cambo richie
 function handleCambiaPswResponse() {
   if(this.status==200)
   {
+<<<<<<< HEAD
     document.getElementById("user_psw").onclick = 0; //in modo che non può più essere ricliccato
+=======
+    document.getElementById("user_psw").onclick = 0;
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
     document.getElementById("user_pswspan").innerHTML = "email successfully sent!";
   }
 }
 
+<<<<<<< HEAD
 function viewLang() { //carica rurri i linguaggi esistenti inseriti nell'arraylanguage (main.js)
+=======
+function viewLang() {
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   var tmp="";
   for (let index = 0; index < arraylanguage.length; index++) {
     tmp += "<span>"+arraylanguage[index].toUpperCase()+"</span><br>";
@@ -24,7 +36,11 @@ function viewLang() { //carica rurri i linguaggi esistenti inseriti nell'arrayla
   document.getElementById('user_lang').innerHTML = tmp;
 }
 
+<<<<<<< HEAD
 function BackLang() {//cliccando la freccia diminuisce l'indice che poi viene usato sia per vedere il linguaggio selezionato, sia per scorrere l'elemento
+=======
+function BackLang() {
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   if(multipleindex>0)
   {
     multipleindex--;
@@ -36,7 +52,11 @@ function BackLang() {//cliccando la freccia diminuisce l'indice che poi viene us
     setLang();
   }
 }
+<<<<<<< HEAD
 function forwardLang() { //cliccando la freccia aumenta l'indice che poi viene usato sia per vedere il linguaggio selezionato, sia per scorrere l'elemento
+=======
+function forwardLang() {
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   if(multipleindex < arraylanguage.length-1)
   {
     multipleindex++;
@@ -48,7 +68,11 @@ function forwardLang() { //cliccando la freccia aumenta l'indice che poi viene u
     setLang();
   }
 }
+<<<<<<< HEAD
 function setLang() { //serve solamente per scorrere tutti i linguaggi fino a mettere quello scelto, è una funzione quindi solo visiva
+=======
+function setLang() {
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   var lang = document.getElementById('user_lang');
   nowheight=staticheight*multipleindex;
   lang.scrollTo(0,nowheight);
@@ -171,16 +195,23 @@ function stampaGiorno(stringadata) {return arraymonth[parseInt(stringadata.slice
 // ------ disponibilita page --------------------------------------------------------------------------------------------------------------
 let arrayUTCDay = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 let gruppi = [];
+<<<<<<< HEAD
 let trattamenti = [];
 let accomodation=0;
 let visualizza = [];
 let lunghezzaperiodo=6;
+=======
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
 const data1 = new Date(); //data periodo
 const data2 = new Date(); //data periodo
 const datacalendario = new Date();//data calendario visivo
 let ndays; //numero giorni in un mese
 let data1id = "";
 let data2id = "";
+<<<<<<< HEAD
+=======
+cambiaPeriodo();
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
 
 
 //AJAX per l'elenco dei gruppi creati
@@ -195,14 +226,18 @@ function elencoGruppi() {
   if(this.status==200)
   {
     let json = JSON.parse(this.responseText);
+<<<<<<< HEAD
     //DATALIST
     let html='';
+=======
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
     for (let index = 0; index < json.count; index++) {
       let gruppo = {
           "id": json.data[index].id,
           "name": json.data[index].nome,
           "color": json.data[index].colore
         };
+<<<<<<< HEAD
       html += '<option value="'+json.data[index].nome+'"/>';
       gruppi.push(gruppo);
     }
@@ -218,6 +253,22 @@ function cambiaPeriodo() { //ricarica il datalist
     data1.setMonth(todaydate.getMonth());
     data1.setFullYear(todaydate.getFullYear());
   }
+=======
+      gruppi.push(gruppo);
+    }
+  }
+}
+
+function cambiaPeriodo() {
+  //GRUPPI
+  let html='<option value="all groups"/>';
+  html+='<option value="gruppo prova"/>';
+  for (let index = 0; index < gruppi.length; index++) {
+    html += '<option value="'+gruppi[index].name+'/>';
+  }
+  document.getElementById('availability_grouplist').innerHTML = html;
+
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   data1id = data1.getDate()+'/'+data1.getMonth()+'/'+data1.getFullYear();
   calcolaData2();
 
@@ -239,31 +290,53 @@ function cambiaPeriodo() { //ricarica il datalist
   loadLang();
   richiediDisponibilita();
 }
+<<<<<<< HEAD
 function previousPeriod() { //cliccando la freccia va indietro di 1 settimana
+=======
+function previousPeriod() {
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   data1.setDate(data1.getDate() - 7);
   cambiaPeriodo();
   costruisciCalendario();
 }
+<<<<<<< HEAD
 function nextPeriod() { //cliccando la freccia va avanti di 1 settimana
+=======
+function nextPeriod() {
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   data1.setDate(data1.getDate() + 7);  
   cambiaPeriodo();
   costruisciCalendario();
 }
+<<<<<<< HEAD
 function previousDay() { //va indietro di un giorno
+=======
+function previousDay() {
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   data1.setDate(data1.getDate() - 1);
   cambiaPeriodo();
   costruisciCalendario();
 }
+<<<<<<< HEAD
 function nextDay() { //va avanti di un giorno
+=======
+function nextDay() {
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   data1.setDate(data1.getDate() + 1);
   cambiaPeriodo();
   costruisciCalendario();
 }
 
+<<<<<<< HEAD
 function calcolaData2() { //calcola la seconda data di 6 giorni dopo in base alla prima
   data2.setFullYear(data1.getFullYear());
   data2.setMonth(data1.getMonth());
   data2.setDate(data1.getDate() + lunghezzaperiodo);
+=======
+function calcolaData2() {
+  data2.setMonth(data1.getMonth());
+  data2.setDate(data1.getDate() + 6);
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   data2id = data2.getDate()+'/'+data2.getMonth()+'/'+data2.getFullYear();
 }
 
@@ -287,8 +360,13 @@ function costruisciCalendario() {
     }
   }
 
+<<<<<<< HEAD
   let flag = false;
   let flag2 = false;
+=======
+  var flag = false;
+  var flag2 = false;
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   for (let index = 1; index <= ndays; index++) {
     let id = index+'/'+datacalendario.getMonth()+'/'+datacalendario.getFullYear();
     if(datacalendario.getMonth() > data1.getMonth() && datacalendario.getMonth() <= data2.getMonth() )
@@ -298,6 +376,7 @@ function costruisciCalendario() {
     }
     if(id == data1id)
     {
+<<<<<<< HEAD
       flag=true;
       giorni += '<li id="'+id+'" class="active" onclick="selectData(this.id)">'+index+'</li>';
     }
@@ -306,6 +385,16 @@ function costruisciCalendario() {
       flag = false;
       flag2 = true;
       giorni += '<li id="'+id+'" class="active" onclick="selectData(this.id)">'+index+'</li>';
+=======
+      giorni += '<li id="'+id+'" class="active" onclick="selectData(this.id)">'+index+'</li>';
+      flag=true;
+    }
+    else if(id == data2id)
+    {
+      giorni += '<li id="'+id+'" class="active" onclick="selectData(this.id)">'+index+'</li>';
+      flag = false;
+      flag2 = true;
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
     }
     else if(flag)
     {
@@ -317,7 +406,11 @@ function costruisciCalendario() {
   document.getElementById('availability_calendar-days').innerHTML = giorni;
   loadLang();
 }
+<<<<<<< HEAD
 function selectData(id) { //seleziona una data nel calendario e aggiorna sia il calendario visualizzato sia il periodo
+=======
+function selectData(id) {
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   let splitted = id.split('/');
   data1.setDate(splitted[0]);
   data1.setMonth(splitted[1]);
@@ -325,16 +418,28 @@ function selectData(id) { //seleziona una data nel calendario e aggiorna sia il 
   cambiaPeriodo();
   costruisciCalendario();
 }
+<<<<<<< HEAD
 function previousMonth() { //va indietro nel calendario visualizzato
   datacalendario.setMonth(datacalendario.getMonth()-1);
   costruisciCalendario();
 }
 function nextMonth() { //va avanti nel calendario visualizzato
+=======
+function previousMonth() {
+  datacalendario.setMonth(datacalendario.getMonth()-1);
+  costruisciCalendario();
+}
+function nextMonth() {
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   datacalendario.setMonth(datacalendario.getMonth()+1);
   costruisciCalendario();
 }
 
+<<<<<<< HEAD
 function returnToPeriod() { //cliccando sul mese ritorna al mese del calendario del periodo selezionato
+=======
+function returnToPeriod() {
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   datacalendario.setDate(data1.getDate());
   datacalendario.setMonth(data1.getMonth());
   datacalendario.setFullYear(data1.getFullYear());
@@ -365,6 +470,7 @@ function viewCalendar() {
 }
 
 function selectGruppi() {
+<<<<<<< HEAD
   clearFilter();
   document.getElementById('availability_accommodation-plans').style.display = 'none';
   for(let index=0 ; index < gruppi.length ; index++)
@@ -372,6 +478,12 @@ function selectGruppi() {
     if(document.getElementById('availability_group').value == ""){richiediDisponibilita();break;}
     
     if(document.getElementById('availability_group').value == gruppi[index].name)
+=======
+  document.getElementById('availability_accommodation-plans').style.display = 'none';
+  for(let index=0 ; index < gruppi.length ; index++)
+  {
+    if(document.getElementById('calendar_gruppi').value == gruppi.name)
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
     {
       document.getElementById('availability_accommodation-plans').style.display = '';
       richiediDisponibilita();
@@ -387,6 +499,7 @@ function selectTrattamento(trattamento) {
   var flag = false;
   if(!document.getElementById(trattamento).classList.contains('active'))
     flag=true;
+<<<<<<< HEAD
 
   clearFilter();  
   
@@ -453,22 +566,49 @@ function clearFilter() {
   
   for (let index = 0; index < document.getElementsByClassName('filter')[1].children.length; index++)
     if(document.getElementsByClassName('filter')[1].children[index].classList.contains('active')) document.getElementsByClassName('filter')[1].children[index].classList.remove('active');
+=======
+  for (let index = 0; index < 6; index++)
+    try {document.getElementById('accomodation_'+index).classList.remove('active'); } catch (error) {} 
+  if(flag)
+  {
+    document.getElementById(trattamento).classList.add('active');
+    document.getElementById('availability_grid-filter').style.display = '';
+    richiediDisponibilita();
+  }
+}
+function selectFilter(id) {
+  var filter = document.getElementById(id).classList;
+  if(filter.contains('active'))
+    filter.remove('active');
+  else
+  {
+    filter.add('active');
+    richiediDisponibilita();
+  }
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
 }
 
 function richiediDisponibilita() {
     //suddivisione di ogni filtro
     let payload="";
     //gruppi
+<<<<<<< HEAD
     for (let index = 0; index < gruppi.length; index++) {
       if(document.getElementById('availability_group').value == gruppi[index].name)
       {//appena viene selezionato un gruppo fa la richiesta ajax solo di quello
         payload = 'gruppi='+gruppi[index].id+'&';
         break;
       }  //altrimenti seleziona tutti i gruppi (bisognerebbe mettere un limitatore per i gruppi da visualizzare)
+=======
+    for (let index = 0; index < gruppi.lenght; index++) {
+      if(document.getElementById('calendar_gruppi').value == gruppi[index].name)
+        payload = 'gruppi='+gruppi[index].id+'&';
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
       else
         payload += 'gruppi='+gruppi[index].id+'&';
     }
 
+<<<<<<< HEAD
     if(accomodation!=0)
     {
       payload+='trattamenti='+accomodation+'&';
@@ -585,6 +725,20 @@ function nomeGruppo(id) {
   for (let index = 0; index < gruppi.length; index++) {
     if(gruppi[index].id==splitted[1])
       return gruppi[index].name
+=======
+    // inizio richiesta
+    var url = site+"/ajax/proxy.cfm?action=disponibilita.grigliaContent";
+    let xhrelencoa = new XMLHttpRequest();
+    xhrelencoa.withCredentials = true;
+    xhrelencoa.open("POST", url, true);
+    xhrelencoa.send(payload+'dal='+decodeURIComponent(data1)+'&numeroGiorni=6');
+    xhrelencoa.onload = handleElencoDisponibilitaResponse; 
+} function handleElencoDisponibilitaResponse() {
+  if(this.status==200)
+  {
+    let json = JSON.parse(this.responseText);
+    //DOVREBBE ANDARE BISOGNA SOLO FILTRARE OGNI STAMPA IN BASE AI FILTRI MESSI
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   }
 }
 
@@ -599,9 +753,21 @@ function elencoStrutture() {
   xhrelencos.send();
   xhrelencos.onload = handleElencoStruttureResponse; 
 } function handleElencoStruttureResponse() {
+<<<<<<< HEAD
   let json = JSON.parse(this.responseText);
   if(json.count>1) //DA FINIRE
     document.getElementById("").innerHTML = input;
+=======
+  if(this.status==200)
+  {
+    let json = JSON.parse(this.responseText);
+    if(json.count>1) //DA FINIRE
+    {
+
+      document.getElementById("").innerHTML = input;
+    }
+  }
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
 }
 
 
@@ -623,7 +789,11 @@ function viewBookings() { //pagina tutta a sinistra (la chiave)
   document.getElementById("bookings_filter").style.display = 'none';
   elencoPrenotazioni();
 }
+<<<<<<< HEAD
 function showBookingsFilter() { //mostra i filtri nella ricerca delle prenotazioni
+=======
+function showBookingsFilter() {
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   document.getElementById("bookings_filter").style.display = '';
   for (let index = 0; index < document.getElementsByClassName("page").length; index++){document.getElementsByClassName("page")[index].style.opacity = 0.5;}
   document.getElementById("bookings_filter").style.opacity = 1;
@@ -636,8 +806,11 @@ function viewAvailability() { //pagina tutta a sinistra (la chiave)
   
   costruisciCalendario();
   elencoGruppi();
+<<<<<<< HEAD
   cambiaPeriodo();
   costruisciCalendario();
+=======
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
 }
 
 function viewCRM() { //pagina tutta a sinistra (la chiave)
@@ -653,7 +826,10 @@ function viewSettings() { //pagina tutta a sinistra (la chiave)
 }
 
 function clearPages() {
+<<<<<<< HEAD
   findCrossCookies();
+=======
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   document.getElementById("navbar").style.opacity = 1;
   for (let index = 0; index < document.getElementsByClassName("page").length; index++){document.getElementsByClassName("page")[index].style.opacity = 1;}
   document.getElementById("navbar").style.display = '';
@@ -688,7 +864,11 @@ function viewLoading(durata) { //durata di quanto deve caricare
 
 }
 
+<<<<<<< HEAD
 function viewUser() { //pagina che si apre cliccando l'icona (nella home o nella pagina settings)
+=======
+function viewUser() { //pagina che si apre cliccando l'icona (nella home)
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   document.getElementById("user").style.display = '';
 
   // Update
@@ -696,16 +876,29 @@ function viewUser() { //pagina che si apre cliccando l'icona (nella home o nella
   document.getElementById("user_nome").innerHTML = nome;
   document.getElementById("user_email").value = email;
   document.getElementById("user_psw").onclick = cambiaPsw;
+<<<<<<< HEAD
   setLang(); //mostra quale linguaggio è selezionato
 }
 function closeUser() { //chiude la pagina utente
+=======
+  setLang();
+}
+function closeUser() {
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
   document.getElementById("user").style.display = 'none';
   setCookieLang();
 }
 
 function setCookieLang() {
+<<<<<<< HEAD
   const d = new Date(); //crea un cookie di un mese per il linguaggio scelto
   d.setTime(d.getTime() + (30*24*60*60*1000));
   document.cookie = langcookiename+"="+arraylanguage[multipleindex]+"; expires="+ d.toUTCString()+"; path=/";
   translator.lang(arraylanguage[multipleindex]); //traduce la pagina in base al linguaggio selezionato
+=======
+  const d = new Date();
+  d.setTime(d.getTime() + (30*24*60*60*1000));
+  document.cookie = langcookiename+"="+arraylanguage[multipleindex]+"; expires="+ d.toUTCString()+"; path=/";
+  translator.lang(arraylanguage[multipleindex]); //change to any language
+>>>>>>> 241d0a89e329340e48c6a90a25735dd140a74e7a
 }
